@@ -122,3 +122,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+[data-color="indigo"] {
+  @apply bg-indigo-400;
+}
+[data-color="red"] {
+  @apply bg-red-400;
+}
+[data-color="green"] {
+  @apply bg-green-400;
+}
+[data-color="amber"] {
+  @apply bg-amber-400;
+}
