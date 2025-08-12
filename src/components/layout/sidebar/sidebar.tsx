@@ -1,9 +1,10 @@
-import { PhotoIcon, StarIcon } from "@heroicons/react/16/solid";
+import { StarIcon } from "@heroicons/react/16/solid";
 import { Sidebar as SidebarComponent } from "./index";
 import { useLocation } from "react-router-dom";
+import { HomeIcon } from "@heroicons/react/20/solid";
 
 const sidebarItems = [
-  { label: "Galeria", icon: PhotoIcon, href: "/gallery" },
+  { label: "Início", icon: HomeIcon, href: "/gallery" },
   { label: "Favoritos", icon: StarIcon, href: "/favorites" },
 ];
 

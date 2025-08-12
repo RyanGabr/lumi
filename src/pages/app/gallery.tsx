@@ -1,15 +1,13 @@
 import { CategoryCard } from "@/components/gallery/category-card";
+import { CommandSearch } from "@/components/gallery/command-search";
 import { Header } from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import {
-  AdjustmentsHorizontalIcon,
-  MagnifyingGlassIcon,
-  PhotoIcon,
+  AdjustmentsHorizontalIcon, PhotoIcon,
   PlusIcon,
   Squares2X2Icon,
-  SquaresPlusIcon,
+  SquaresPlusIcon
 } from "@heroicons/react/16/solid";
-import { CommandIcon } from "lucide-react";
 
 const categoies = [
   { category_name: "Kubo | Gerenciamento de estoque", image_quantity: 8 },
@@ -26,17 +24,7 @@ export function Gallery() {
           <Button size="sm" className="rounded-full" variant="secondary">
             <AdjustmentsHorizontalIcon />
           </Button>
-          <Button
-            size="sm"
-            className="rounded-full text-xs"
-            variant="secondary"
-          >
-            <MagnifyingGlassIcon />
-            Buscar
-            <div className="flex items-center gap-1 text-foreground/50">
-              <CommandIcon className="size-3" />K
-            </div>
-          </Button>
+          <CommandSearch />
           <Button variant="secondary" className="text-xs" size="sm">
             <SquaresPlusIcon />
             Criar categoria
