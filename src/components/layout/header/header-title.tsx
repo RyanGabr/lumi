@@ -5,5 +5,12 @@ interface HeaderTitleProps {
 }
 
 export function HeaderTitle({ children }: HeaderTitleProps) {
-  return <h1 className="font-medium text-2xl truncate text-ellipsis">{children}</h1>;
+  return (
+    <h1
+      className="font-medium text-2xl truncate text-ellipsis
+      select-none"
+    >
+      {children}
+    </h1>
+  );
 }
