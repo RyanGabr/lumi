@@ -1,11 +1,11 @@
 import {
   AdjustmentsHorizontalIcon,
-  PlusIcon,
-  SquaresPlusIcon,
+  PlusIcon
 } from "@heroicons/react/16/solid";
 import { Header } from "../layout/header";
 import { Button } from "../ui/button";
 import { CommandSearch } from "./command-search";
+import { CreateCategory } from "./create-category";
 
 export function GalleryHeader() {
   return (
@@ -16,10 +16,7 @@ export function GalleryHeader() {
           <AdjustmentsHorizontalIcon />
         </Button>
         <CommandSearch />
-        <Button variant="secondary" className="text-xs" size="sm">
-          <SquaresPlusIcon />
-          Criar categoria
-        </Button>
+        <CreateCategory />
         <Button variant="secondary" className="text-xs" size="sm">
           <PlusIcon />
           Adicionar imagem
