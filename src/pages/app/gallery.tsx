@@ -1,4 +1,5 @@
 import { CategoryCard } from "@/components/gallery/category-card";
+import { Header } from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import {
   AdjustmentsHorizontalIcon,
@@ -19,18 +20,21 @@ const categoies = [
 export function Gallery() {
   return (
     <div className="space-y-7">
-      <div className="flex items-center justify-between">
-        <h1 className="font-medium text-2xl">Bem-vindo a sua galeria</h1>
-        <div className="flex items-center gap-3">
+      <Header.Root>
+        <Header.Title>Bem-vindo ao Lumi</Header.Title>
+        <Header.Actions>
           <Button size="sm" className="rounded-full" variant="secondary">
             <AdjustmentsHorizontalIcon />
           </Button>
-          <Button size="sm" className="rounded-full text-xs" variant="secondary">
+          <Button
+            size="sm"
+            className="rounded-full text-xs"
+            variant="secondary"
+          >
             <MagnifyingGlassIcon />
             Buscar
             <div className="flex items-center gap-1 text-foreground/50">
-              <CommandIcon className="size-3"/>
-              K
+              <CommandIcon className="size-3" />K
             </div>
           </Button>
           <Button variant="secondary" className="text-xs" size="sm">
@@ -41,8 +45,8 @@ export function Gallery() {
             <PlusIcon />
             Adicionar imagem
           </Button>
-        </div>
-      </div>
+        </Header.Actions>
+      </Header.Root>
       <div className="space-y-4">
         <span className="flex items-center gap-1.5 text-xs font-bold text-foreground/50">
           <Squares2X2Icon className="size-3.5" />
