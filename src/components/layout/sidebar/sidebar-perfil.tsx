@@ -13,6 +13,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/lib/supabase";
 
 interface SidebarPerfilProps {
   avatarUrl?: string;
@@ -20,6 +22,19 @@ interface SidebarPerfilProps {
 }
 
 export function SidebarPerfil({ avatarUrl, username }: SidebarPerfilProps) {
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.error("Falha ao realizar o Logout:", error.message);
+    } else {
+      console.log("Logout bem-sucedido!");
+      navigate("/auth");
+    }
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="w-full">
@@ -54,7 +69,7 @@ export function SidebarPerfil({ avatarUrl, username }: SidebarPerfilProps) {
           <CodeBracketIcon />
           GitHub
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogout}>
           <ArrowUturnLeftIcon />
           Sair
         </DropdownMenuItem>
