@@ -1,16 +1,9 @@
-import {
-  ArrowUturnLeftIcon,
-  ChevronUpDownIcon,
-  CodeBracketIcon,
-  Cog6ToothIcon,
-  PaperAirplaneIcon,
-} from "@heroicons/react/16/solid";
+import { ChevronUpDownIcon } from "@heroicons/react/16/solid";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuItem,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
@@ -35,6 +28,7 @@ export function SidebarPerfil() {
   const avatarUrl = user?.user_metadata?.avatar_url;
   const fullName = user?.user_metadata?.full_name || "";
   const firstLetter = fullName.charAt(0).toUpperCase(); // first letter from user full name
+  const email = user?.email;
 
   return (
     <DropdownMenu>
@@ -42,11 +36,7 @@ export function SidebarPerfil() {
         <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-foreground/5 cursor-default hover:bg-foreground/10 transition-colors">
           <div className="flex items-center gap-2">
             {avatarUrl ? (
-              <img
-                src={avatarUrl}
-                alt=""
-                className="w-7 rounded-full"
-              />
+              <img src={avatarUrl} alt="" className="w-7 rounded-full" />
             ) : (
               <div className="size-6 rounded-full bg-foreground/10 flex items-center justify-center">
                 {firstLetter}
@@ -61,25 +51,20 @@ export function SidebarPerfil() {
           </div>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="start">
-        <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
+      <DropdownMenuContent align="start">
+        <div className="flex items-center gap-2 p-2 cursor-default select-none">
+          <img src={avatarUrl} alt="" className="w-8 rounded-full" />
+          <div>
+            <h3 className="text-sm font-medium">{fullName}</h3>
+            <p className="text-xs font-medium text-foreground/50">{email}</p>
+          </div>
+        </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Cog6ToothIcon />
-          Configurações
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <PaperAirplaneIcon />
-          Feedback
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <CodeBracketIcon />
-          GitHub
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={handleLogout}>
-          <ArrowUturnLeftIcon />
-          Sair
-        </DropdownMenuItem>
+        <DropdownMenuItem>Configurações</DropdownMenuItem>
+        <DropdownMenuItem>Feedback</DropdownMenuItem>
+        <DropdownMenuItem>GitHub</DropdownMenuItem>
+        <DropdownMenuItem>Landing Page</DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogout}>Sair</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
