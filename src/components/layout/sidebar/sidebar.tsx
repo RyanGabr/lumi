@@ -24,7 +24,7 @@ export function Sidebar() {
 
   return (
     <SidebarComponent.Root>
-      <SidebarComponent.Perfil username="Euuryannn"/>
+      <SidebarComponent.Perfil />
       <div className="flex flex-col gap-px">
         {sidebarItems.map((item, index) => {
           const IconName = item.icon;

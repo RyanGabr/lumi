@@ -15,14 +15,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
+import { useUser, type User } from "@supabase/auth-helpers-react";
 
-interface SidebarPerfilProps {
-  avatarUrl?: string;
-  username: string;
-}
-
-export function SidebarPerfil({ avatarUrl, username }: SidebarPerfilProps) {
+export function SidebarPerfil() {
   const navigate = useNavigate();
+  const user: User | null = useUser();
 
   async function handleLogout() {
     const { error } = await supabase.auth.signOut();
@@ -35,18 +32,28 @@ export function SidebarPerfil({ avatarUrl, username }: SidebarPerfilProps) {
     }
   }
 
+  const avatarUrl = user?.user_metadata?.avatar_url;
+  const fullName = user?.user_metadata?.full_name || "";
+  const firstLetter = fullName.charAt(0).toUpperCase(); // first letter from user full name
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="w-full">
         <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-foreground/5 cursor-default hover:bg-foreground/10 transition-colors">
           <div className="flex items-center gap-2">
             {avatarUrl ? (
-              <img src={avatarUrl} alt="" className="w-7 rounded-full" />
+              <img
+                src={avatarUrl}
+                alt=""
+                className="w-7 rounded-full"
+              />
             ) : (
-              <div className="size-6 rounded-full bg-gradient-to-br from-orange-400 to-amber-400" />
+              <div className="size-6 rounded-full bg-foreground/10 flex items-center justify-center">
+                {firstLetter}
+              </div>
             )}
             <span className="font-medium text-sm truncate text-ellipsis max-w-36">
-              {username}
+              {fullName}
             </span>
           </div>
           <div>
