@@ -8,7 +8,7 @@ interface SidebarRootProps {
 
 export function SidebarRoot({ children, className }: SidebarRootProps) {
   return (
-    <div className={cn("h-full w-72 space-y-5 p-5", className)}>
+    <div className={cn("h-full w-72 space-y-5 p-5 cursor-default select-none", className)}>
       {children}
     </div>
   );

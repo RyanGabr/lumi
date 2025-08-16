@@ -42,27 +42,33 @@ export function Sidebar() {
       <div className="flex flex-col gap-4 px-3">
         <div className="font-medium text-sm">Minhas categorias</div>
         <div className="flex flex-col gap-3">
-          {categories?.map((category, index) => {
-            return (
-              <SidebarComponent.Category
-                key={index}
-                href={`/category?${category.id}`}
-              >
-                <div className="flex items-center gap-2">
-                  <div
-                    data-color={category.color}
-                    className="size-2.5 rounded-full"
-                  />
-                  <span className="truncate text-ellipsis max-w-36">
-                    {category.name}
-                  </span>
-                </div>
-                <div>
-                  <span className="text-xs text-foreground/50">8</span>
-                </div>
-              </SidebarComponent.Category>
-            );
-          })}
+          {!categories || categories.length === 0 ? (
+            <span className="text-foreground/50 text-sm">
+              Nenhuma categoria
+            </span>
+          ) : (
+            categories?.map((category, index) => {
+              return (
+                <SidebarComponent.Category
+                  key={index}
+                  href={`/category?${category.id}`}
+                >
+                  <div className="flex items-center gap-2">
+                    <div
+                      data-color={category.color}
+                      className="size-2.5 rounded-full"
+                    />
+                    <span className="truncate text-ellipsis max-w-36">
+                      {category.name}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-xs text-foreground/50">8</span>
+                  </div>
+                </SidebarComponent.Category>
+              );
+            })
+          )}
         </div>
       </div>
     </SidebarComponent.Root>
