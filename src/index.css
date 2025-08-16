@@ -135,3 +135,6 @@
 [data-color="amber"] {
   @apply bg-amber-400;
 }
+[data-color="blue"] {
+  @apply bg-blue-400;
+}

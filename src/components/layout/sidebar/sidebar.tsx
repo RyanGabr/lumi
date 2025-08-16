@@ -2,25 +2,16 @@ import { StarIcon } from "@heroicons/react/16/solid";
 import { Sidebar as SidebarComponent } from "./index";
 import { useLocation } from "react-router-dom";
 import { HomeIcon } from "@heroicons/react/20/solid";
+import { useGetCategories } from "@/hooks/use-category";
 
 const sidebarItems = [
   { label: "Início", icon: HomeIcon, href: "/gallery" },
   { label: "Favoritos", icon: StarIcon, href: "/favorites" },
 ];
 
-const sidebarCategories = [
-  {
-    label: "Kubo | Gerenciamento de estoque",
-    href: "/category",
-    color: "indigo",
-  },
-  { label: "Ideias de interface", href: "/category", color: "green" },
-  { label: "Importante", href: "/category", color: "red" },
-  { label: "Papeis de parede", href: "/category", color: "amber" },
-];
-
 export function Sidebar() {
   const location = useLocation();
+  const { data: categories } = useGetCategories();
 
   return (
     <SidebarComponent.Root>
@@ -51,16 +42,19 @@ export function Sidebar() {
       <div className="flex flex-col gap-4 px-3">
         <div className="font-medium text-sm">Minhas categorias</div>
         <div className="flex flex-col gap-3">
-          {sidebarCategories.map((item, index) => {
+          {categories?.map((category, index) => {
             return (
-              <SidebarComponent.Category key={index} href={item.href}>
+              <SidebarComponent.Category
+                key={index}
+                href={`/category?${category.id}`}
+              >
                 <div className="flex items-center gap-2">
                   <div
-                    data-color={item.color}
+                    data-color={category.color}
                     className="size-2.5 rounded-full"
                   />
                   <span className="truncate text-ellipsis max-w-36">
-                    {item.label}
+                    {category.name}
                   </span>
                 </div>
                 <div>
