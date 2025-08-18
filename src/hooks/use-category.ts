@@ -1,6 +1,10 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
 import { supabase } from "@/lib/supabase";
-import type { CategoryType } from "@/types/category";
+import type { CategoryType, CreateCategoryType } from "@/types/category";
 
 export function useGetCategories() {
   return useSuspenseQuery<CategoryType[]>({
@@ -16,6 +20,28 @@ export function useGetCategories() {
       if (error) throw error;
 
       return data;
+    },
+  });
+}
+
+export function useCreateCategory() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (formData: CreateCategoryType) => {
+      const { data, error } = await supabase
+        .from("categories")
+        .insert([formData])
+        .single();
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["categories"] });
     },
   });
 }
