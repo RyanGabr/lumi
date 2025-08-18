@@ -18,7 +18,7 @@ export function SidebarCategory({
       to={href}
       className={cn(
         (className =
-          "flex items-center justify-between cursor-default text-foreground/80 text-sm font-medium hover:text-foreground transition-colors"),
+          "flex items-center justify-between cursor-pointer text-foreground/80 text-sm font-medium hover:text-foreground transition-colors"),
         className
       )}
     >
