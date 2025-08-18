@@ -1,11 +1,17 @@
-import { AlertCircleIcon, XIcon } from "lucide-react"
+import { AlertCircleIcon, XIcon } from "lucide-react";
 
-import { useFileUpload } from "@/hooks/use-file-upload"
-import { PhotoIcon } from "@heroicons/react/16/solid"
+import { useFileUpload } from "@/hooks/use-file-upload";
+import { PhotoIcon } from "@heroicons/react/16/solid";
+import { useEffect } from "react";
 
-export default function FileUploader() {
-  const maxSizeMB = 5
-  const maxSize = maxSizeMB * 1024 * 1024 // 5MB default
+type FileUploaderProps = {
+  value?: File | null;
+  onChange?: (file: File | null) => void;
+};
+
+export default function FileUploader({ onChange, value }: FileUploaderProps) {
+  const maxSizeMB = 5;
+  const maxSize = maxSizeMB * 1024 * 1024; // 5MB default
 
   const [
     { files, isDragging, errors },
@@ -21,9 +27,19 @@ export default function FileUploader() {
   ] = useFileUpload({
     accept: "image/*",
     maxSize,
-  })
+  });
 
-  const previewUrl = files[0]?.preview || null
+  const previewUrl = files[0]?.preview || null;
+
+  useEffect(() => {
+    const fileOrMeta = files[0]?.file ?? files[0];
+
+    if (fileOrMeta instanceof File) {
+      onChange?.(fileOrMeta);
+    } else {
+      onChange?.(null);
+    }
+  }, [files, onChange]);
 
   return (
     <div className="flex flex-col gap-2 cursor-default select-none">
@@ -37,7 +53,7 @@ export default function FileUploader() {
           onDragOver={handleDragOver}
           onDrop={handleDrop}
           data-dragging={isDragging || undefined}
-          className="border-input bg-accent/20 hover:bg-accent/50 data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px]"
+          className="border-input bg-foreground/3 hover:bg-accent/50 data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px]"
         >
           <input
             {...getInputProps()}
@@ -102,5 +118,5 @@ export default function FileUploader() {
         Upload de uma única imagem
       </p>
     </div>
-  )
+  );
 }
