@@ -1,5 +1,6 @@
 import { GoogleIcon } from "@/components/auth/google-icon";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/ui/logo";
 import { Separator } from "@/components/ui/separator";
 import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 import { supabase } from "@/lib/supabase";
@@ -33,7 +34,7 @@ export function Auth() {
   return (
     <div className="w-full h-screen flex items-center justify-center p-10 sm:p-0">
       <div className="flex flex-col gap-7 w-96">
-        <span>LOGO</span>
+        <Logo />
         <div className="space-y-2">
           <h3 className="font-semibold text-2xl">Bem-vindo ao Lumi</h3>
           <p className="text-sm text-foreground/50">
@@ -44,7 +45,7 @@ export function Auth() {
         <div className="flex flex-col gap-3">
           <Button
             onClick={handleGoogleSignIn}
-            className="text-sm bg-foreground/5 text-foreground border border-border hover:bg-foreground/10"
+            className="text-sm bg-foreground/3 rounded-sm text-foreground border border-border/40 hover:bg-foreground/10 cursor-pointer"
             size="lg"
           >
             <GoogleIcon />

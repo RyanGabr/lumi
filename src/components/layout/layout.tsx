@@ -9,7 +9,7 @@ export function Layout() {
       <Suspense fallback={<LoadingSidebar />}>
         <Sidebar />
       </Suspense>
-      <main className="w-full p-5 md:p-7 flex flex-col gap-10 max-h-screen overflow-y-auto">
+      <main className="w-full p-5 md:p-7 md:px-10 flex flex-col gap-10 max-h-screen overflow-y-auto">
         <Outlet />
       </main>
     </div>

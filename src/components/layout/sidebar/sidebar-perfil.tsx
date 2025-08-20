@@ -4,7 +4,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuItem,
   DropdownMenuContent,
-  DropdownMenuGroup
+  DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
@@ -36,7 +36,11 @@ export function SidebarPerfil() {
         <div className="flex items-center justify-between px-2.5 py-2 rounded-md cursor-pointer hover:bg-foreground/6 transition-colors">
           <div className="flex items-center gap-2">
             {avatarUrl ? (
-              <img src={avatarUrl} alt="" className="w-5.5 rounded-full" />
+              <img
+                src={avatarUrl}
+                alt="User profile picture"
+                className="size-5.5 rounded-full"
+              />
             ) : (
               <div className="size-6 rounded-full bg-foreground/10 flex items-center justify-center">
                 {firstLetter}
@@ -51,33 +55,28 @@ export function SidebarPerfil() {
           </div>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="p-0">
+      <DropdownMenuContent align="start" className="p-0 border-border/50">
+        {/* Dropdown Perfil Details */}
         <div className="flex items-center gap-2 py-3 px-4 cursor-default select-none">
-          <img src={avatarUrl} alt="" className="w-7 rounded-full" />
+          <img
+            src={avatarUrl}
+            alt="User profile picture"
+            className="w-7 rounded-full"
+          />
           <div>
             <h3 className="text-sm font-medium">{fullName}</h3>
             <p className="text-xs font-medium text-foreground/50">{email}</p>
           </div>
         </div>
-        <DropdownMenuGroup className="bg-background/50 p-1.5 border-t">
-          <DropdownMenuItem className="text-foreground/60">
-            Configurações
-          </DropdownMenuItem>
-          <DropdownMenuItem className="text-foreground/60">
-            Feedback
-          </DropdownMenuItem>
-          <DropdownMenuItem className="text-foreground/60">
-            GitHub
-          </DropdownMenuItem>
-          <DropdownMenuItem className="text-foreground/60">
-            Landing Page
-          </DropdownMenuItem>
+
+        <DropdownMenuGroup className="bg-background/50 p-1.5 border-t text-foreground/60">
+          <DropdownMenuItem>Configurações</DropdownMenuItem>
+          <DropdownMenuItem>Feedback</DropdownMenuItem>
+          <DropdownMenuItem>GitHub</DropdownMenuItem>
+          <DropdownMenuItem>Landing Page</DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuGroup className="bg-background/50 p-1.5 border-t">
-          <DropdownMenuItem
-            className="text-foreground/60"
-            onClick={handleLogout}
-          >
+        <DropdownMenuGroup className="bg-background/50 p-1.5 border-t text-foreground/60">
+          <DropdownMenuItem onClick={handleLogout}>
             Sair da conta
           </DropdownMenuItem>
         </DropdownMenuGroup>

@@ -1,6 +1,7 @@
 import { Squares2X2Icon } from "@heroicons/react/16/solid";
 import { CategoryCard } from "./category-card";
 import { useGetCategories } from "@/hooks/use-category";
+import { PlusIcon } from "@heroicons/react/20/solid";
 
 export function CategoriesList() {
   const { data: categories } = useGetCategories();
@@ -12,12 +13,15 @@ export function CategoriesList() {
           <Squares2X2Icon className="size-3.5" />
           Categorias
         </span>
-        <div className="bg-foreground/5 w-full h-80 rounded-3xl flex flex-col items-center justify-center gap-2">
-          <Squares2X2Icon className="size-12 fill-foreground/50" />
-          <h3 className="font-medium">
+        <div className="bg-foreground/5 w-full h-80 rounded-xl flex flex-col items-center justify-center gap-2">
+          <Squares2X2Icon className="size-12 fill-foreground/30" />
+          <h3 className="font-medium text-foreground/80">
             Você ainda não possui nenhuma categoria
           </h3>
-          <p className="text-sm text-foreground/50">Crie sua primeira categoria</p>
+          <button className="flex items-center gap-1 text-sm text-foreground/50 cursor-pointer hover:bg-foreground/5 rounded-md py-1.5 px-3">
+            <PlusIcon className="size-4" />
+            Crie sua primeira categoria
+          </button>
         </div>
       </div>
     );
@@ -27,11 +31,15 @@ export function CategoriesList() {
     <div className="space-y-4 select-none">
       <span className="flex items-center gap-1.5 text-xs font-bold text-foreground/50">
         <Squares2X2Icon className="size-3.5" />
-        Categorias
+        Categorias recentes
       </span>
-      <div className="grid grid-cols-5 gap-5 items-center">
-        {categories?.map((category, index) => (
-          <CategoryCard key={index} category_name={category.name} />
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 items-center">
+        {categories?.slice(0, 5).map((category, index) => (
+          <CategoryCard
+            key={index}
+            name={category.name}
+            color={category.color}
+          />
         ))}
       </div>
     </div>

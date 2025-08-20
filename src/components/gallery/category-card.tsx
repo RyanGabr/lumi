@@ -1,17 +1,16 @@
 interface CategoryCardProps {
-  category_name: string;
+  name: string;
+  color: string;
 }
 
-export function CategoryCard({ category_name }: CategoryCardProps) {
+export function CategoryCard({ name, color }: CategoryCardProps) {
   return (
-    <div className="w-[1fr] h-52 rounded-3xl border border-border bg-foreground/5 flex flex-col justify-between p-3 transition-all hover:bg-foreground/7 select-none">
-      <div className="bg-foreground/7 rounded-full px-3 py-1.5 w-fit text-xs font-semibold text-foreground/60">
-        8 imagens
+    <div className="w-[1fr] h-44 rounded-3xl bg-foreground/5 flex flex-col justify-between transition-all hover:bg-foreground/7 select-none">
+      <div className="p-4 bg-foreground/7 rounded-t-3xl">
+        <div data-color={color} className="size-3 rounded-full" />
       </div>
-      <div className="p-2">
-        <span className="font-medium text-foreground/60">
-          {category_name}
-        </span>
+      <div className="p-5">
+        <span className="font-medium text-foreground/60 text-sm">{name}</span>
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ export function CommandSearch() {
       <CommandDialog
         open={open}
         onOpenChange={setOpen}
-        className="rounded-lg border-2 border-border shadow-md lg:min-w-2xl h-96"
+        className="rounded-lg border-2 border-border shadow-2xl shadow-black/80 lg:min-w-2xl h-96"
       >
         <CommandInput
           placeholder="Informe o título da imagem para pesquisar..."

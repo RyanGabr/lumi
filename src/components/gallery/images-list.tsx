@@ -19,10 +19,10 @@ export function ImagesList() {
         <Header />
         <button
           onClick={openDialog}
-          className="size-52 bg-foreground/5 rounded-xl flex flex-col items-center justify-center gap-2 transition-all hover:bg-foreground/8"
+          className="size-40 bg-foreground/5 rounded-xl flex flex-col items-center justify-center gap-2 transition-all hover:bg-foreground/8"
         >
-          <PlusIcon className="size-10 fill-foreground/50" />
-          <p className="font-medium text-sm text-foreground/50">
+          <PlusIcon className="size-7 fill-foreground/50" />
+          <p className="font-medium text-xs text-foreground/50">
             Adicionar imagem
           </p>
         </button>
@@ -39,7 +39,7 @@ export function ImagesList() {
             key={image.id}
             src={image.image_url}
             alt={image.name}
-            className="w-full h-96 rounded-xl object-cover transition-all hover:brightness-110 border-2 border-border/50"
+            className="w-full h-72 rounded-xl object-cover transition-all hover:brightness-110 border-2 border-border/50"
           />
         ))}
       </div>
