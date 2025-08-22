@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createCategorySchema } from "@/schemas/create-category-schema";
 import { useUser } from "@supabase/auth-helpers-react";
 import { useCreateCategory } from "@/hooks/use-category";
-import { useCategorySheet } from "@/context/category-sheet-context";
+import { useCategoryPopover } from "@/context/category-popover-context";
 import { Sidebar as SidebarComponent } from "../layout/sidebar";
 import { Button } from "../ui/button";
 import type { CreateCategoryFormType } from "@/types/category";
@@ -31,7 +31,7 @@ const colors = [
 ];
 
 export function CreateCategory() {
-  const { isOpen, setIsOpen, closeSheet } = useCategorySheet();
+  const { isOpen, setIsOpen, closePopover } = useCategoryPopover();
   const { mutateAsync, isPending } = useCreateCategory();
   const user = useUser();
 
@@ -54,7 +54,7 @@ export function CreateCategory() {
       user_id: user?.id!,
     });
 
-    closeSheet();
+    closePopover();
     reset();
   }
 
