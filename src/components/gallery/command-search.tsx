@@ -14,8 +14,7 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/16/solid";
 import { StarIcon } from "@heroicons/react/20/solid";
-import { Button } from "../ui/button";
-import { CommandIcon } from "lucide-react";
+import { Sidebar as SidebarComponent } from "../layout/sidebar";
 
 export function CommandSearch() {
   const [open, setOpen] = useState(false);
@@ -33,22 +32,14 @@ export function CommandSearch() {
 
   return (
     <>
-      <Button
-        onClick={() => setOpen(true)}
-        size="sm"
-        className="rounded-full text-xs"
-        variant="secondary"
-      >
-        <MagnifyingGlassIcon />
+      <SidebarComponent.Button onClick={() => setOpen(true)}>
+        <MagnifyingGlassIcon className="size-4.5 fill-foreground/40" />
         Buscar
-        <div className="flex items-center gap-1 text-foreground/50">
-          <CommandIcon className="size-3" />K
-        </div>
-      </Button>
+      </SidebarComponent.Button>
       <CommandDialog
         open={open}
         onOpenChange={setOpen}
-        className="rounded-lg border-2 border-border shadow-2xl shadow-black/80 lg:min-w-2xl h-96"
+        className="rounded-lg border-border shadow-2xl shadow-black/80 lg:min-w-2xl h-96"
       >
         <CommandInput
           placeholder="Informe o título da imagem para pesquisar..."

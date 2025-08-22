@@ -19,10 +19,10 @@ export function ImagesList() {
         <Header />
         <button
           onClick={openDialog}
-          className="size-40 bg-foreground/5 rounded-xl flex flex-col items-center justify-center gap-2 transition-all hover:bg-foreground/8"
+          className="size-40 bg-foreground/3 rounded-xl flex flex-col items-center justify-center gap-2 hover:border border-border/50 cursor-pointer"
         >
           <PlusIcon className="size-7 fill-foreground/50" />
-          <p className="font-medium text-xs text-foreground/50">
+          <p className="font-semibold text-xs text-foreground/50">
             Adicionar imagem
           </p>
         </button>

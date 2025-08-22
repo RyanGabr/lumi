@@ -1,4 +1,4 @@
-import { Squares2X2Icon } from "@heroicons/react/16/solid";
+import { Squares2X2Icon } from "@heroicons/react/20/solid";
 import { CategoryCard } from "./category-card";
 import { useGetCategories } from "@/hooks/use-category";
 import { PlusIcon } from "@heroicons/react/20/solid";
@@ -13,14 +13,14 @@ export function CategoriesList() {
           <Squares2X2Icon className="size-3.5" />
           Categorias
         </span>
-        <div className="bg-foreground/5 w-full h-80 rounded-xl flex flex-col items-center justify-center gap-2">
-          <Squares2X2Icon className="size-12 fill-foreground/30" />
-          <h3 className="font-medium text-foreground/80">
+        <div className="bg-foreground/3 w-full h-80 rounded-lg flex flex-col items-center justify-center gap-2">
+          <Squares2X2Icon className="size-10 fill-foreground/30" />
+          <h3 className="font-medium text-foreground/50 text-sm">
             Você ainda não possui nenhuma categoria
           </h3>
-          <button className="flex items-center gap-1 text-sm text-foreground/50 cursor-pointer hover:bg-foreground/5 rounded-md py-1.5 px-3">
+          <button className="flex items-center gap-1 text-[13px] font-medium text-blue-400 cursor-pointer hover:bg-foreground/5 rounded-md py-1 px-3">
             <PlusIcon className="size-4" />
-            Crie sua primeira categoria
+            Nova categoria
           </button>
         </div>
       </div>

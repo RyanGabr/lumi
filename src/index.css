@@ -83,7 +83,7 @@
 .dark {
   --background: rgb(25, 25, 25);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
+  --card: rgb(32, 32, 32);
   --card-foreground: oklch(0.985 0 0);
   --popover: rgb(37, 37, 37);
   --popover-foreground: oklch(0.985 0 0);
@@ -137,6 +137,9 @@
 }
 [data-color="blue"] {
   @apply bg-blue-400;
+}
+[data-color="pink"] {
+  @apply bg-pink-400;
 }
 
 *::-webkit-scrollbar {
