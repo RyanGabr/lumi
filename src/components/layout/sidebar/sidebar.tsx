@@ -1,6 +1,7 @@
 import {
-  Cog8ToothIcon, PaperAirplaneIcon,
-  PhotoIcon, StarIcon
+  Cog8ToothIcon,
+  PaperAirplaneIcon,
+  StarIcon,
 } from "@heroicons/react/16/solid";
 import { Sidebar as SidebarComponent } from "./index";
 import { useLocation } from "react-router-dom";
@@ -8,6 +9,7 @@ import { HomeIcon } from "@heroicons/react/20/solid";
 import { useGetCategories } from "@/hooks/use-category";
 import { CommandSearch } from "@/components/gallery/command-search";
 import { CreateCategory } from "@/components/gallery/create-category";
+import { CreateImage } from "@/components/gallery/create-image";
 
 const sidebarItems = [
   { label: "Página inicial", icon: HomeIcon, href: "/gallery" },
@@ -27,10 +29,7 @@ export function Sidebar() {
         <div className="flex flex-col gap-px">
           <CommandSearch />
           <CreateCategory />
-          <SidebarComponent.Button>
-            <PhotoIcon className="size-4.5 fill-foreground/40" />
-            Adicionar imagem
-          </SidebarComponent.Button>
+          <CreateImage />
         </div>
       </div>
 
