@@ -23,6 +23,25 @@ export function useGetImages() {
   });
 }
 
+export function useGetImagesByCategoryId(categoryId: string){
+  return useSuspenseQuery<ImageType[]>({
+    queryKey: ["images", categoryId],
+    queryFn: async () => {
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      const { data, error } = await supabase
+        .from("images")
+        .select("*")
+        .eq("category_id", categoryId)
+        .order("created_at", { ascending: false })
+
+      if (error) throw error;
+
+      return data;
+    },
+  })
+}
+
 function sanitizeFileName(fileName: string) {
   return fileName
     .normalize("NFD")

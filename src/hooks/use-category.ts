@@ -24,6 +24,25 @@ export function useGetCategories() {
   });
 }
 
+export function useGetCategoryById(id: string) {
+  return useSuspenseQuery<CategoryType>({
+    queryKey: ["category", id],
+    queryFn: async () => {
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      const { data, error } = await supabase
+        .from("categories")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+      if (error) throw error;
+
+      return data;
+    },
+  });
+}
+
 export function useCreateCategory() {
   const queryClient = useQueryClient();
 
@@ -39,6 +58,24 @@ export function useCreateCategory() {
       }
 
       return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["categories"] });
+    },
+  });
+}
+
+export function useDeleteCategory() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase
+        .from("categories")
+        .delete()
+        .eq("id", id);
+
+      if (error) throw error;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["categories"] });

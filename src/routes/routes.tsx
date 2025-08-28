@@ -3,6 +3,7 @@ import { Gallery } from "@/pages/app/gallery";
 import { Auth } from "@/pages/auth/auth";
 import { createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./protected-route";
+import { Category } from "@/pages/app/category";
 
 export const routes = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const routes = createBrowserRouter([
           {
             path: "gallery",
             element: <Gallery />,
+          },
+          {
+            path: "category",
+            element: <Category />,
           },
         ],
       },
