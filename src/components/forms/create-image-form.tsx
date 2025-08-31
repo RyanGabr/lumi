@@ -53,9 +53,16 @@ export function CreateImageForm({ onSuccess }: CreateImageFormProps) {
       <header className="flex items-start justify-between p-4">
         <div className="space-y-1">
           <h3 className="font-medium text-sm">Adicionar imagem</h3>
-          <p className="text-xs text-foreground/40">
-            A imagem será inserida nesta categoria.
-          </p>
+          {/* If categoryId exists => user is on a specific category page */}
+          {categoryId ? (
+            <p className="text-xs text-foreground/40">
+              A imagem será inserida nesta categoria.
+            </p>
+          ) : (
+            <p className="text-xs text-foreground/40">
+              A imagem será inserida na sua galeria.
+            </p>
+          )}
         </div>
         <PopoverClose className="cursor-pointer p-0.5 rounded hover:bg-foreground/5">
           <X className="size-5 text-foreground/40" />
