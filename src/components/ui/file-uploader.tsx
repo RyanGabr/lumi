@@ -1,8 +1,8 @@
 import { AlertCircleIcon, XIcon } from "lucide-react";
 
 import { useFileUpload } from "@/hooks/use-file-upload";
-import { PhotoIcon } from "@heroicons/react/16/solid";
 import { useEffect } from "react";
+import { ArchiveBoxArrowDownIcon } from "@heroicons/react/20/solid";
 
 type FileUploaderProps = {
   value?: File | null;
@@ -53,7 +53,7 @@ export default function FileUploader({ onChange, value }: FileUploaderProps) {
           onDragOver={handleDragOver}
           onDrop={handleDrop}
           data-dragging={isDragging || undefined}
-          className="border-input bg-foreground/3 hover:bg-accent/50 data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px]"
+          className="border-border border-dashed cursor-pointer border-2 bg-foreground/1 hover:bg-foreground/4 data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-md p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px]"
         >
           <input
             {...getInputProps()}
@@ -69,18 +69,12 @@ export default function FileUploader({ onChange, value }: FileUploaderProps) {
               />
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center px-4 py-3 text-center">
-              <div
-                className="bg-foreground/10 mb-2 flex size-9 shrink-0 items-center justify-center rounded-xl"
-                aria-hidden="true"
-              >
-                <PhotoIcon className="size-5 opacity-60" />
+            <div className="flex flex-col items-center justify-center px-4 py-3 text-center gap-2">
+              <div aria-hidden="true">
+                <ArchiveBoxArrowDownIcon className="size-6 opacity-40" />
               </div>
-              <p className="mb-1.5 text-sm font-medium">
-                Solte sua imagem aqui ou clique para escolher
-              </p>
-              <p className="text-muted-foreground text-xs">
-                Tamanho máximo: {maxSizeMB}MB
+              <p className="text-xs font-medium text-muted-foreground">
+                Solte sua imagem aqui ou clique para selecionar
               </p>
             </div>
           )}
@@ -109,14 +103,6 @@ export default function FileUploader({ onChange, value }: FileUploaderProps) {
           <span>Você excedeu o tamanho máximo permitido de 5MB</span>
         </div>
       )}
-
-      <p
-        aria-live="polite"
-        role="region"
-        className="text-muted-foreground mt-2 text-center text-xs"
-      >
-        Upload de uma única imagem
-      </p>
     </div>
   );
 }

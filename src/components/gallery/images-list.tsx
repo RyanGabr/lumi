@@ -1,9 +1,9 @@
-import { useDialog } from "@/context/dialog-context";
 import { useGetImages } from "@/hooks/use-images";
 import { PhotoIcon, PlusIcon } from "@heroicons/react/16/solid";
+import { ContextMenu, ContextMenuTrigger } from "../ui/context-menu";
+import { ImageContextMenu } from "./image-context-menu";
 
 export function ImagesList() {
-  const { openDialog } = useDialog();
   const { data: images } = useGetImages();
 
   const Header = () => (
@@ -17,10 +17,7 @@ export function ImagesList() {
     return (
       <div className="space-y-4 select-none">
         <Header />
-        <button
-          onClick={openDialog}
-          className="size-40 bg-foreground/3 rounded-xl flex flex-col items-center justify-center gap-2 hover:border border-border/50 cursor-pointer"
-        >
+        <button className="size-40 bg-foreground/3 rounded-xl flex flex-col items-center justify-center gap-2 hover:border border-border/50 cursor-pointer">
           <PlusIcon className="size-7 fill-foreground/50" />
           <p className="font-semibold text-xs text-foreground/50">
             Adicionar imagem
@@ -35,12 +32,16 @@ export function ImagesList() {
       <Header />
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 items-start">
         {images.map((image) => (
-          <img
-            key={image.id}
-            src={image.image_url}
-            alt={image.name}
-            className="w-full h-72 rounded-xl object-cover transition-all hover:brightness-110 border-2 border-border/50"
-          />
+          <ContextMenu>
+            <ContextMenuTrigger>
+              <img
+                key={image.id}
+                src={image.image_url}
+                className="w-full h-72 rounded-xl object-cover transition-all hover:brightness-110 border-2 border-border/50 cursor-pointer"
+              />
+            </ContextMenuTrigger>
+            <ImageContextMenu image={image} />
+          </ContextMenu>
         ))}
       </div>
     </div>
