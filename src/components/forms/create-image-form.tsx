@@ -4,7 +4,6 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createImageSchema } from "@/schemas/create-image-schema";
 import type { CreateImageFormType } from "@/types/image";
-import { useUser } from "@supabase/auth-helpers-react";
 import { useCreateImage } from "@/hooks/use-images";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { X } from "lucide-react";
@@ -16,7 +15,6 @@ interface CreateImageFormProps {
 }
 
 export function CreateImageForm({ onSuccess }: CreateImageFormProps) {
-  const user = useUser();
   const { mutateAsync, isPending } = useCreateImage();
 
   // If the user is on a specific category page, capture the id
@@ -39,10 +37,7 @@ export function CreateImageForm({ onSuccess }: CreateImageFormProps) {
   });
 
   async function handleCreateImage(data: CreateImageFormType) {
-    await mutateAsync({
-      ...data,
-      user_id: user?.id!,
-    });
+    await mutateAsync(data);
 
     onSuccess?.();
     reset();
