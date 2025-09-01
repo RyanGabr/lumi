@@ -72,7 +72,9 @@ export function useCreateImage() {
       if (uploadError) throw uploadError;
 
       // Get image public URL
-      const { data: { publicUrl } } = supabase.storage.from("images").getPublicUrl(filePath);
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("images").getPublicUrl(filePath);
 
       // Insert image
       const { data, error: insertError } = await supabase
@@ -97,3 +99,25 @@ export function useCreateImage() {
   });
 }
 
+export function useDeleteImage() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ id, path }: { id: string; path: string[] }) => {
+      // Delete image from Storage
+      const { error: storageError } = await supabase.storage
+        .from("images")
+        .remove(path);
+
+      if (storageError) throw storageError;
+
+      // Delete image
+      const { error } = await supabase.from("images").delete().eq("id", id);
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["images"] });
+    },
+  });
+}

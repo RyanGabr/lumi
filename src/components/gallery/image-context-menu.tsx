@@ -1,16 +1,16 @@
 import {
-  ArrowUpRightIcon,
-  Bars3BottomLeftIcon,
-  StarIcon,
-  TrashIcon,
+    ArrowUpRightIcon,
+    Bars3BottomLeftIcon,
+    StarIcon
 } from "@heroicons/react/16/solid";
 import {
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuSeparator,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuLabel,
+    ContextMenuSeparator,
 } from "../ui/context-menu";
 import type { ImageType } from "@/types/image";
+import { DeleteImage } from "./delete-image";
 
 interface ImageContextMenuProps {
   image: ImageType;
@@ -43,10 +43,7 @@ export function ImageContextMenu({ image }: ImageContextMenuProps) {
         Adicionar descrição
       </ContextMenuItem>
       <ContextMenuSeparator className="mx-2" />
-      <ContextMenuItem className="focus:text-red-400 focus:[&_svg:not([class*='text-'])]:text-red-400">
-        <TrashIcon />
-        Excluir
-      </ContextMenuItem>
+      <DeleteImage image={image}/>
       <ContextMenuSeparator className="mx-2" />
       <p className="text-xs text-foreground/40 font-medium px-2 py-1 select-none">
         Imagem inserida em {formatDate(image.created_at)}
