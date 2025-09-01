@@ -4,7 +4,11 @@ import {
   useSuspenseQuery,
 } from "@tanstack/react-query";
 import { supabase } from "@/lib/supabase";
-import type { CategoryType, CreateCategoryType } from "@/types/category";
+import type {
+  CategoryType,
+  CreateCategoryType,
+  EditCategoryType,
+} from "@/types/category";
 
 export function useGetCategories() {
   return useSuspenseQuery<CategoryType[]>({
@@ -81,6 +85,30 @@ export function useDeleteCategory() {
       if (error) throw error;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["categories"] });
+    },
+  });
+}
+
+export function useEditCategory() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (data: EditCategoryType) => {
+      const { id, ...fields } = data;
+
+      const { error } = await supabase
+        .from("categories")
+        .update(fields)
+        .eq("id", id)
+        .single();
+
+      if (error) {
+        throw new Error(error.message);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["category"] });
       queryClient.invalidateQueries({ queryKey: ["categories"] });
     },
   });

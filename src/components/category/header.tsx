@@ -2,14 +2,14 @@ import { useGetCategoryById } from "@/hooks/use-category";
 import { Squares2X2Icon } from "@heroicons/react/16/solid";
 import { SlashIcon } from "@heroicons/react/20/solid";
 import { useLocation } from "react-router-dom";
-import { Button } from "../ui/button";
 import { DeleteDialog } from "./delete-dialog";
 import { CreateImage } from "./create-image";
+import { EditCategory } from "./edit-category";
 
 export function Header() {
   const location = useLocation();
-
   const categoryId = location.search.replace("?", "");
+
   const { data: category } = useGetCategoryById(categoryId);
 
   const date = new Date(category.created_at);
@@ -38,13 +38,7 @@ export function Header() {
           Criada em {created_at_date}
         </span>
         <CreateImage />
-        <Button
-          size="sm"
-          variant="ghost"
-          className="has-[>svg]:px-2 h-7 rounded-sm"
-        >
-          Editar
-        </Button>
+        <EditCategory />
         <DeleteDialog category_id={category.id} />
       </div>
     </div>
