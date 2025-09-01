@@ -39,7 +39,7 @@ export function Header() {
         </span>
         <CreateImage />
         <EditCategory />
-        <DeleteDialog category_id={category.id} />
+        <DeleteDialog />
       </div>
     </div>
   );

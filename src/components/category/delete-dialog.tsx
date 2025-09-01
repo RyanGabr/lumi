@@ -12,18 +12,17 @@ import {
 } from "../ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useDeleteCategory } from "@/hooks/use-category";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-interface DeleteDialogProps {
-  category_id: string;
-}
+export function DeleteDialog() {
+  const location = useLocation();
+  const categoryId = location.search.replace("?", "");
 
-export function DeleteDialog({ category_id }: DeleteDialogProps) {
   const { mutateAsync, isPending } = useDeleteCategory();
   const navigate = useNavigate();
 
   async function handleDeleteCategory() {
-    await mutateAsync(category_id);
+    await mutateAsync(categoryId);
     setTimeout(() => {
       navigate("/gallery");
     }, 500);
