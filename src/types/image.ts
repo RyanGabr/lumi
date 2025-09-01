@@ -9,6 +9,7 @@ export type ImageType = {
   is_favorite: boolean;
   user_id: string;
   path: string;
+  created_at: string;
 };
 
 export type CreateImageFormType = z.infer<typeof createImageSchema>;
