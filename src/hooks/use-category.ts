@@ -70,11 +70,14 @@ export function useDeleteCategory() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
-        .from("categories")
+      const { error: imagesError } = await supabase
+        .from("images")
         .delete()
-        .eq("id", id);
+        .eq("category_id", id);
 
+      if (imagesError) throw imagesError;
+
+      const { error } = await supabase.from("categories").delete().eq("id", id);
       if (error) throw error;
     },
     onSuccess: () => {

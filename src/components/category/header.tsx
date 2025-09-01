@@ -4,6 +4,7 @@ import { SlashIcon } from "@heroicons/react/20/solid";
 import { useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 import { DeleteDialog } from "./delete-dialog";
+import { CreateImage } from "./create-image";
 
 export function Header() {
   const location = useLocation();
@@ -16,7 +17,7 @@ export function Header() {
   const created_at_date = Intl.DateTimeFormat("pt-BR", {
     day: "2-digit",
     month: "2-digit",
-    year: "numeric"
+    year: "numeric",
   }).format(date);
 
   return (
@@ -34,9 +35,9 @@ export function Header() {
       </div>
       <div className="flex items-center">
         <span className="font-medium text-sm text-foreground/40 mr-2 select-none">
-          Criada em {" "}
-          {created_at_date}
+          Criada em {created_at_date}
         </span>
+        <CreateImage />
         <Button
           size="sm"
           variant="ghost"
@@ -44,7 +45,7 @@ export function Header() {
         >
           Editar
         </Button>
-        <DeleteDialog category_id={category.id}/>
+        <DeleteDialog category_id={category.id} />
       </div>
     </div>
   );

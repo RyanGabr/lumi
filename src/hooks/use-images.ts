@@ -49,13 +49,13 @@ function sanitizeFileName(fileName: string) {
     .replace(/[^a-zA-Z0-9._-]/g, "_");
 }
 
-async function createImage(input: CreateImageType) {
-  const safeFileName = sanitizeFileName(input.file.name);
+async function createImage(formData: CreateImageType) {
+  const safeFileName = sanitizeFileName(formData.file.name);
   const filePath = `${safeFileName}`;
 
   const { error: uploadError } = await supabase.storage
     .from("images")
-    .upload(filePath, input.file, {
+    .upload(filePath, formData.file, {
       cacheControl: "3600",
       upsert: false,
     });
@@ -69,12 +69,11 @@ async function createImage(input: CreateImageType) {
   const { data, error: insertError } = await supabase
     .from("images")
     .insert({
-      name: input.name,
-      description: input.description,
-      category_id: input.category_id,
-      user_id: input.user_id,
+      description: formData.description,
+      category_id: formData.category_id,
+      user_id: formData.user_id,
       image_url: publicUrl,
-      is_favorite: input.is_favorite,
+      is_favorite: formData.is_favorite,
     })
     .select()
     .single();

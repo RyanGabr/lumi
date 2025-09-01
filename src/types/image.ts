@@ -7,7 +7,6 @@ export type ImageType = {
   id: string;
   image_url: string;
   is_favorite: boolean;
-  name: string;
   user_id: string;
 };
 
