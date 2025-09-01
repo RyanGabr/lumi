@@ -37,8 +37,7 @@ export function CategoriesList() {
         {categories?.slice(0, 5).map((category, index) => (
           <CategoryCard
             key={index}
-            name={category.name}
-            color={category.color}
+            category={category}
           />
         ))}
       </div>
