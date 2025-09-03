@@ -35,17 +35,23 @@ export function Auth() {
     <div className="w-full h-screen flex items-center justify-center p-10 sm:p-0">
       <div className="flex flex-col gap-7 w-96">
         <Logo />
-        <div className="space-y-2">
-          <h3 className="font-semibold text-2xl">Bem-vindo ao Lumi</h3>
-          <p className="text-sm text-foreground/50">
-            Um espaço para guardar, organizar e valorizar suas imagens.
-          </p>
+        <div className="leading-9">
+          <h3 className="font-bold text-2xl tracking-tight">
+            Bem-vindo ao Lumi
+          </h3>
+          <h3 className="font-bold text-2xl tracking-tight text-foreground/50">
+            Guardar, organizar e valorizar.
+          </h3>
         </div>
+        <p className="text-sm text-foreground/50">
+          Entre com sua conta utilizando o serviço do Google.
+        </p>
         <Separator />
         <div className="flex flex-col gap-3">
           <Button
+            variant="blue"
             onClick={handleGoogleSignIn}
-            className="text-sm bg-foreground/3 rounded-sm text-foreground border border-border/40 hover:bg-foreground/10 cursor-pointer"
+            className="text-sm cursor-pointer rounded-sm"
             size="lg"
           >
             <GoogleIcon />
