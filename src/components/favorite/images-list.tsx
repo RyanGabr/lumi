@@ -1,9 +1,7 @@
 import { useGetFavoriteImages } from "@/hooks/use-images";
 import { StarIcon } from "@heroicons/react/16/solid";
 import { Loader2, StarOff } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { ContextMenu, ContextMenuTrigger } from "../ui/context-menu";
-import { ImageContextMenu } from "../gallery/image-context-menu";
+import { Image } from "../image/image";
 
 export function ImagesList() {
   const { data: images, isFetching } = useGetFavoriteImages();
@@ -40,26 +38,7 @@ export function ImagesList() {
       <Header />
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 items-start">
         {images.map((image) => (
-          <ContextMenu>
-            <ContextMenuTrigger>
-              <div className="relative h-72">
-                {image.is_favorite === true && (
-                  <Tooltip>
-                    <TooltipTrigger className="absolute right-4 top-4 w-fit h-fit z-50">
-                      <StarIcon className="size-5 fill-yellow-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>Imagem favoritada</TooltipContent>
-                  </Tooltip>
-                )}
-                <img
-                  key={image.id}
-                  src={image.image_url}
-                  className="w-full h-full rounded-xl object-cover transition-all hover:brightness-110 border-2 border-border/50 cursor-pointer"
-                />
-              </div>
-            </ContextMenuTrigger>
-            <ImageContextMenu image={image} />
-          </ContextMenu>
+          <Image image={image} key={image.id}/>
         ))}
       </div>
     </div>
