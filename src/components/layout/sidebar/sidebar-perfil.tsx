@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import { useUser, type User } from "@supabase/auth-helpers-react";
+import { Github, LogOut, Presentation, Send, Settings } from "lucide-react";
 
 export function SidebarPerfil() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export function SidebarPerfil() {
               <img
                 src={avatarUrl}
                 alt="User profile picture"
-                className="size-5.5 rounded-full"
+                className="size-5.5 rounded-sm"
               />
             ) : (
               <div className="size-6 rounded-full bg-foreground/10 flex items-center justify-center">
@@ -55,29 +56,41 @@ export function SidebarPerfil() {
           </div>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="p-0 border-border/50">
+      <DropdownMenuContent align="start" className="p-0 border-border/50 min-w-72">
         {/* Dropdown Perfil Details */}
-        <div className="flex items-center gap-2 py-3 px-4 cursor-default select-none">
+        <div className="flex items-center gap-3 p-3 cursor-default select-none">
           <img
             src={avatarUrl}
             alt="User profile picture"
-            className="w-7 rounded-full"
+            className="w-8.5 rounded-sm"
           />
           <div>
-            <h3 className="text-sm font-medium">{fullName}</h3>
+            <h3 className="text-sm font-semibold">{fullName}</h3>
             <p className="text-xs font-medium text-foreground/50">{email}</p>
           </div>
         </div>
 
-        <DropdownMenuGroup className="bg-background/50 p-1.5 border-t text-foreground/60">
-          <DropdownMenuItem>Configurações</DropdownMenuItem>
-          <DropdownMenuItem>Feedback</DropdownMenuItem>
-          <DropdownMenuItem>GitHub</DropdownMenuItem>
-          <DropdownMenuItem>Landing Page</DropdownMenuItem>
+        <DropdownMenuGroup className="p-1.5 border-t text-foreground/50 font-medium">
+          <DropdownMenuItem>
+            <Settings /> Configurações
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Send />
+            Feedback
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Github />
+            GitHub
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Presentation />
+            Landing Page
+          </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuGroup className="bg-background/50 p-1.5 border-t text-foreground/60">
+        <DropdownMenuGroup className="p-1.5 border-t text-foreground/60">
           <DropdownMenuItem onClick={handleLogout}>
-            Sair da conta
+            <LogOut />
+            Sair
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
