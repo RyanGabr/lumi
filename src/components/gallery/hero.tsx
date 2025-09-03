@@ -1,30 +1,22 @@
-import { ArrowRightIcon } from "@heroicons/react/16/solid";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { useUser } from "@supabase/auth-helpers-react";
 import { Logo } from "../ui/logo";
 
 export function GalleryHero() {
+  const user = useUser();
+  const username = user?.user_metadata.name;
+
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-6 h-52">
-      <div className="flex items-center gap-2">
+    <div className="w-full flex flex-col justify-center gap-6 h-44">
+      <div className="flex flex-col gap-4">
         <Logo />
-        <h1 className="font-bold text-[26px] text-foreground/90 tracking-tight">
-          Encontre suas imagens de forma rápida
-        </h1>
-      </div>
-      <div className="relative w-full">
-        <Input
-          className="bg-foreground/3 border-border/50 font-medium text-[15px] py-3.5 px-5
-          ring-ring/30 rounded-xl text-foreground/90"
-          placeholder="Pesquise pelo título da imagem que deseja..."
-        />
-        <Button
-          className="size-6 absolute right-3 top-1/2 -translate-y-1/2 rounded-full cursor-pointer"
-          size="icon"
-          disabled
-        >
-          <ArrowRightIcon />
-        </Button>
+        <div className="">
+          <h1 className="font-bold text-3xl text-foreground/90 tracking-tight">
+            Olá {username.split(" ")[0]}.
+          </h1>
+          <h1 className="font-bold text-3xl text-foreground/50 tracking-tight">
+            Bem-vindo à sua galeria.
+          </h1>
+        </div>
       </div>
     </div>
   );
