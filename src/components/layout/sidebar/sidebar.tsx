@@ -1,21 +1,15 @@
-import {
-  Cog8ToothIcon,
-  PaperAirplaneIcon,
-  StarIcon,
-} from "@heroicons/react/16/solid";
 import { Sidebar as SidebarComponent } from "./index";
 import { useLocation } from "react-router-dom";
-import { HomeIcon } from "@heroicons/react/20/solid";
 import { useGetCategories } from "@/hooks/use-category";
-import { CommandSearch } from "@/components/gallery/command-search";
 import { CreateCategory } from "./create-category";
 import { CreateImage } from "./create-image";
+import { Inbox, Send, Settings, Star } from "lucide-react";
 
 const sidebarItems = [
-  { label: "Página inicial", icon: HomeIcon, href: "/gallery" },
-  { label: "Favoritos", icon: StarIcon, href: "/favorites" },
-  { label: "Enviar feedback", icon: PaperAirplaneIcon, href: "/feedback" },
-  { label: "Configurações", icon: Cog8ToothIcon, href: "/feedback" },
+  { label: "Página inicial", icon: Inbox, href: "/gallery" },
+  { label: "Favoritos", icon: Star, href: "/favorite" },
+  { label: "Enviar feedback", icon: Send, href: "/feedback" },
+  { label: "Configurações", icon: Settings, href: "/feedback" },
 ];
 
 export function Sidebar() {
@@ -27,33 +21,32 @@ export function Sidebar() {
       <div className="space-y-2">
         <SidebarComponent.Perfil />
         <div className="flex flex-col gap-px">
-          <CommandSearch />
-          <CreateCategory />
-          <CreateImage />
-        </div>
+        {sidebarItems.map((item, index) => {
+          const IconName = item.icon;
+
+          return (
+            <SidebarComponent.Item
+              href={item.href}
+              key={index}
+              className={`${
+                location.pathname === item.href && "bg-foreground/6"
+              }`}
+            >
+              <IconName strokeWidth={2.2} className="size-4.5 text-ring" />
+              {item.label}
+            </SidebarComponent.Item>
+          );
+        })}
+      </div>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="space-y-2">
         <div className="font-medium text-[13px] text-foreground/50 px-3">
           Galeria
         </div>
         <div className="flex flex-col gap-px">
-          {sidebarItems.map((item, index) => {
-            const IconName = item.icon;
-
-            return (
-              <SidebarComponent.Item
-                href={item.href}
-                key={index}
-                className={`${
-                  location.pathname === item.href && "bg-foreground/6"
-                }`}
-              >
-                <IconName className="size-4.5 fill-foreground/40" />
-                {item.label}
-              </SidebarComponent.Item>
-            );
-          })}
+          <CreateCategory />
+          <CreateImage />
         </div>
       </div>
 

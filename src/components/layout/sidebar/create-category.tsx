@@ -1,8 +1,8 @@
-import { SquaresPlusIcon } from "@heroicons/react/16/solid";
 import { Sidebar as SidebarComponent } from ".";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { useState } from "react";
 import { CreateCategoryForm } from "../../forms/create-category-form";
+import { Grid2x2PlusIcon } from "lucide-react";
 
 export function CreateCategory() {
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
@@ -11,7 +11,7 @@ export function CreateCategory() {
     <Popover open={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
       <PopoverTrigger asChild>
         <SidebarComponent.Button>
-          <SquaresPlusIcon className="size-4.5 fill-foreground/40" />
+          <Grid2x2PlusIcon strokeWidth={2.2} className="size-4.5 text-ring" />
           Nova categoria
         </SidebarComponent.Button>
       </PopoverTrigger>

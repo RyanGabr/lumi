@@ -4,9 +4,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Sidebar as SidebarComponent } from ".";
-import { PhotoIcon } from "@heroicons/react/16/solid";
 import { CreateImageForm } from "@/components/forms/create-image-form";
 import { useState } from "react";
+import { ImagePlus } from "lucide-react";
 
 export function CreateImage() {
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
@@ -15,7 +15,7 @@ export function CreateImage() {
     <Popover open={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
       <PopoverTrigger asChild>
         <SidebarComponent.Button>
-          <PhotoIcon className="size-4.5 fill-foreground/40" />
+          <ImagePlus strokeWidth={2.2} className="size-4.5 text-ring" />
           Adicionar imagem
         </SidebarComponent.Button>
       </PopoverTrigger>
