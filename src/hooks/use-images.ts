@@ -43,6 +43,24 @@ export function useGetImagesByCategoryId(categoryId: string) {
   });
 }
 
+export function useGetFavoriteImages() {
+  return useSuspenseQuery<ImageType[]>({
+    queryKey: ["favorite-images"],
+    queryFn: async () => {
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      const { data, error } = await supabase
+        .from("images")
+        .select("*")
+        .eq("is_favorite", "TRUE");
+
+      if (error) throw error;
+
+      return data;
+    },
+  });
+}
+
 function sanitizeFileName(fileName: string) {
   return fileName
     .normalize("NFD")
@@ -113,8 +131,35 @@ export function useDeleteImage() {
 
       // Delete image
       const { error } = await supabase.from("images").delete().eq("id", id);
-      
+
       if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["images"] });
+    },
+  });
+}
+
+export function useFavoriteImage() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      is_favorite,
+    }: {
+      id: string;
+      is_favorite: boolean;
+    }) => {
+      const { error } = await supabase
+        .from("images")
+        .update({is_favorite})
+        .eq("id", id)
+        .single();
+
+      if (error) {
+        throw new Error(error.message);
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["images"] });
