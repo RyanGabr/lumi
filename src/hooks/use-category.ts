@@ -6,9 +6,10 @@ import {
 import { supabase } from "@/lib/supabase";
 import type {
   CategoryType,
-  CreateCategoryType,
+  CreateCategoryFormType,
   EditCategoryType,
 } from "@/types/category";
+import { useUser } from "@supabase/auth-helpers-react";
 
 export function useGetCategories() {
   return useSuspenseQuery<CategoryType[]>({
@@ -49,12 +50,16 @@ export function useGetCategoryById(id: string) {
 
 export function useCreateCategory() {
   const queryClient = useQueryClient();
+  const user = useUser();
 
   return useMutation({
-    mutationFn: async (formData: CreateCategoryType) => {
+    mutationFn: async (formData: CreateCategoryFormType) => {
       const { data, error } = await supabase
         .from("categories")
-        .insert([formData])
+        .insert({
+          ...formData,
+          user_id: user?.id,
+        })
         .single();
 
       if (error) {

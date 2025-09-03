@@ -16,11 +16,6 @@ export type CategoryType = {
 // Use this type to type forms
 export type CreateCategoryFormType = z.infer<typeof createCategorySchema>;
 
-// Use this type to type create category hook
-export type CreateCategoryType = CreateCategoryFormType & {
-  user_id: string;
-};
-
 // Edit category types
 
 // Use this type to type forms

@@ -3,7 +3,6 @@ import { createCategorySchema } from "@/schemas/create-category-schema";
 import type { CreateCategoryFormType } from "@/types/category";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PopoverClose } from "@radix-ui/react-popover";
-import { useUser } from "@supabase/auth-helpers-react";
 import { X } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { Input } from "../ui/input";
@@ -25,7 +24,6 @@ interface CreateCategoryFormProps {
 
 export function CreateCategoryForm({ onSuccess }: CreateCategoryFormProps) {
   const { mutateAsync, isPending } = useCreateCategory();
-  const user = useUser();
 
   const {
     register,
@@ -41,10 +39,7 @@ export function CreateCategoryForm({ onSuccess }: CreateCategoryFormProps) {
   });
 
   async function handleCreateCategory(data: CreateCategoryFormType) {
-    await mutateAsync({
-      ...data,
-      user_id: user?.id!,
-    });
+    await mutateAsync(data);
 
     onSuccess?.();
 
