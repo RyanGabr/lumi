@@ -1,7 +1,8 @@
 import { useGetImages } from "@/hooks/use-images";
-import { PhotoIcon, PlusIcon } from "@heroicons/react/16/solid";
+import { PhotoIcon } from "@heroicons/react/16/solid";
 import { ContextMenu, ContextMenuTrigger } from "../ui/context-menu";
 import { ImageContextMenu } from "./image-context-menu";
+import { CreateImage } from "./create-image";
 
 export function ImagesList() {
   const { data: images } = useGetImages();
@@ -17,12 +18,7 @@ export function ImagesList() {
     return (
       <div className="space-y-4 select-none">
         <Header />
-        <button className="size-40 bg-foreground/3 rounded-xl flex flex-col items-center justify-center gap-2 hover:border border-border/50 cursor-pointer">
-          <PlusIcon className="size-7 fill-foreground/50" />
-          <p className="font-semibold text-xs text-foreground/50">
-            Adicionar imagem
-          </p>
-        </button>
+        <CreateImage />
       </div>
     );
   }
