@@ -2,18 +2,12 @@ import { Outlet } from "react-router-dom";
 import { Sidebar } from "./sidebar/sidebar";
 import { LoadingSidebar } from "./sidebar/loading-sidebar";
 import { Suspense } from "react";
-import { CategoryPopoverProvider } from "@/context/category-popover-context";
-import { DialogProvider } from "@/context/dialog-context";
 
 export function Layout() {
   return (
     <div className="flex h-screen w-full">
       <Suspense fallback={<LoadingSidebar />}>
-        <CategoryPopoverProvider>
-          <DialogProvider>
-            <Sidebar />
-          </DialogProvider>
-        </CategoryPopoverProvider>
+        <Sidebar />
       </Suspense>
       <main className="w-full flex flex-col gap-10 max-h-screen overflow-y-auto">
         <Outlet />
