@@ -1,7 +1,7 @@
 import { Squares2X2Icon } from "@heroicons/react/20/solid";
 import { CategoryCard } from "./category-card";
 import { useGetCategories } from "@/hooks/use-category";
-import { PlusIcon } from "@heroicons/react/20/solid";
+import { CreateCategory } from "./create-category";
 
 export function CategoriesList() {
   const { data: categories } = useGetCategories();
@@ -18,10 +18,7 @@ export function CategoriesList() {
           <h3 className="font-medium text-foreground/50 text-sm">
             Você ainda não possui nenhuma categoria
           </h3>
-          <button className="flex items-center gap-1 text-[13px] font-medium text-blue-400 cursor-pointer hover:bg-foreground/5 rounded-md py-1 px-3">
-            <PlusIcon className="size-4" />
-            Nova categoria
-          </button>
+          <CreateCategory />
         </div>
       </div>
     );
