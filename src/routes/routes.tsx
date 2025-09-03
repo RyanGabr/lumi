@@ -4,6 +4,7 @@ import { Auth } from "@/pages/auth/auth";
 import { createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./protected-route";
 import { Category } from "@/pages/app/category";
+import { Favorite } from "@/pages/app/favorite";
 
 export const routes = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const routes = createBrowserRouter([
           {
             path: "category",
             element: <Category />,
+          },
+          {
+            path: "favorite",
+            element: <Favorite />,
           },
         ],
       },
