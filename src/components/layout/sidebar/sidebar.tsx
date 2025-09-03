@@ -8,8 +8,8 @@ import { useLocation } from "react-router-dom";
 import { HomeIcon } from "@heroicons/react/20/solid";
 import { useGetCategories } from "@/hooks/use-category";
 import { CommandSearch } from "@/components/gallery/command-search";
-import { CreateCategory } from "@/components/gallery/create-category";
-import { CreateImage } from "@/components/gallery/create-image";
+import { CreateCategory } from "./create-category";
+import { CreateImage } from "./create-image";
 
 const sidebarItems = [
   { label: "Página inicial", icon: HomeIcon, href: "/gallery" },
