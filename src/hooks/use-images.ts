@@ -153,7 +153,35 @@ export function useFavoriteImage() {
     }) => {
       const { error } = await supabase
         .from("images")
-        .update({is_favorite})
+        .update({ is_favorite })
+        .eq("id", id)
+        .single();
+
+      if (error) {
+        throw new Error(error.message);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["images"] });
+      queryClient.invalidateQueries({ queryKey: ["favorite-images"] });
+    },
+  });
+}
+
+export function useUpdateImageCategory() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      category_id,
+    }: {
+      id: string;
+      category_id: string;
+    }) => {
+      const { error } = await supabase
+        .from("images")
+        .update({ category_id })
         .eq("id", id)
         .single();
 
