@@ -2,9 +2,13 @@ import { Header } from "@/components/favorite/header";
 import { ImagesList } from "@/components/favorite/images-list";
 import { LoadingFavorite } from "@/components/favorite/loading-favorite";
 import { Overview } from "@/components/favorite/overview";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 export function Favorite() {
+  useEffect(() => {
+    document.title = "Lumi | Favoritos";
+  }, []);
+
   return (
     <Suspense fallback={<LoadingFavorite />}>
       <Header />
