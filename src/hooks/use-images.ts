@@ -11,8 +11,6 @@ export function useGetImages() {
   return useSuspenseQuery<ImageType[]>({
     queryKey: ["images"],
     queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 300)); // 300ms delay
-
       const { data, error } = await supabase
         .from("images")
         .select("*")
@@ -28,8 +26,6 @@ export function useGetImagesByCategoryId(categoryId: string) {
   return useSuspenseQuery<ImageType[]>({
     queryKey: ["images", categoryId],
     queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 300));
-
       const { data, error } = await supabase
         .from("images")
         .select("*")
@@ -47,8 +43,6 @@ export function useGetFavoriteImages() {
   return useSuspenseQuery<ImageType[]>({
     queryKey: ["favorite-images"],
     queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 300));
-
       const { data, error } = await supabase
         .from("images")
         .select("*")

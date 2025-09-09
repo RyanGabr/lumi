@@ -15,8 +15,6 @@ export function useGetCategories() {
   return useSuspenseQuery<CategoryType[]>({
     queryKey: ["categories"],
     queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 300)); // 300ms delay
-
       const { data, error } = await supabase
         .from("categories")
         .select("*")
@@ -33,8 +31,6 @@ export function useGetCategoryById(id: string) {
   return useSuspenseQuery<CategoryType>({
     queryKey: ["category", id],
     queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 300));
-
       const { data, error } = await supabase
         .from("categories")
         .select("*")
