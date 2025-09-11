@@ -5,6 +5,7 @@ import { supabase } from "./lib/supabase";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/query-client";
+import { Toaster } from "./components/ui/sonner";
 
 export function App() {
   return (
@@ -12,6 +13,7 @@ export function App() {
       <SessionContextProvider supabaseClient={supabase}>
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={routes} />
+          <Toaster />
         </QueryClientProvider>
       </SessionContextProvider>
     </ThemeProvider>
