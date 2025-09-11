@@ -5,11 +5,14 @@ import {
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenuGroup,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import { useUser, type User } from "@supabase/auth-helpers-react";
-import { Github, LogOut, Presentation, Send, Settings } from "lucide-react";
+import {
+  ArrowUpRight
+} from "lucide-react";
 
 export function SidebarPerfil() {
   const navigate = useNavigate();
@@ -40,7 +43,7 @@ export function SidebarPerfil() {
               <img
                 src={avatarUrl}
                 alt="User profile picture"
-                className="size-5.5 rounded-sm"
+                className="size-6 rounded-full"
               />
             ) : (
               <div className="size-6 rounded-full bg-foreground/10 flex items-center justify-center">
@@ -56,41 +59,34 @@ export function SidebarPerfil() {
           </div>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="p-0 border-border/50 min-w-72">
+      <DropdownMenuContent
+        align="start"
+        className="p-0 min-w-64 rounded-lg shadow-2xl shadow-black/30"
+      >
         {/* Dropdown Perfil Details */}
-        <div className="flex items-center gap-3 p-3 cursor-default select-none">
-          <img
-            src={avatarUrl}
-            alt="User profile picture"
-            className="w-8.5 rounded-sm"
-          />
-          <div>
-            <h3 className="text-sm font-semibold">{fullName}</h3>
-            <p className="text-xs font-medium text-foreground/50">{email}</p>
-          </div>
+        <div className="flex flex-col p-3 cursor-default select-none">
+          <h3 className="text-sm font-medium text-foreground/85">{fullName}</h3>
+          <p className="text-xs font-medium text-foreground/50">{email}</p>
         </div>
-
-        <DropdownMenuGroup className="p-1.5 border-t text-foreground/50 font-medium">
+        <DropdownMenuSeparator className="mx-2 my-0" />
+        <DropdownMenuGroup className="p-1 text-foreground/85">
+          <DropdownMenuItem>Configurações</DropdownMenuItem>
+          <DropdownMenuItem>Enviar feedback</DropdownMenuItem>
           <DropdownMenuItem>
-            <Settings /> Configurações
+            Repositório do projeto <ArrowUpRight />
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Send />
-            Feedback
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Github />
-            GitHub
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Presentation />
             Landing Page
+            <ArrowUpRight />
           </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuGroup className="p-1.5 border-t text-foreground/60">
-          <DropdownMenuItem onClick={handleLogout}>
-            <LogOut />
-            Sair
+        <DropdownMenuSeparator className="mx-2 my-0" />
+        <DropdownMenuGroup className="p-1 text-foreground/85">
+          <DropdownMenuItem
+            onClick={handleLogout}
+            className="focus:text-red-400"
+          >
+            Fazer logout
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
