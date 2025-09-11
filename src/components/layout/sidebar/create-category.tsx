@@ -16,7 +16,7 @@ export function CreateCategory() {
         </SidebarComponent.Button>
       </PopoverTrigger>
       <PopoverContent
-        className="left-50 w-sm relative p-0 rounded-xl border-border cursor-default"
+        className="left-50 w-sm relative p-0 rounded-xl"
         align="end"
         sideOffset={-10}
       >

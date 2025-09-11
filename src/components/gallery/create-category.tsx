@@ -15,7 +15,7 @@ export function CreateCategory() {
         </button>
       </PopoverTrigger>
       <PopoverContent
-        className="w-sm relative p-0 rounded-xl border-border cursor-default"
+        className="w-sm p-0 rounded-xl border-border/50"
         align="center"
       >
         <CreateCategoryForm onSuccess={() => setPopoverIsOpen(false)}/>
