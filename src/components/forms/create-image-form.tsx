@@ -8,6 +8,8 @@ import { useCreateImage } from "@/hooks/use-images";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { X } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { toast } from "sonner";
+import { InformationCircleIcon } from "@heroicons/react/16/solid";
 
 // Using this prop to close the popover
 interface CreateImageFormProps {
@@ -41,6 +43,12 @@ export function CreateImageForm({ onSuccess }: CreateImageFormProps) {
 
     onSuccess?.();
     reset();
+
+    toast("Imagem criada", {
+      description: "Sua imagem foi inserida com sucesso!",
+      icon: <InformationCircleIcon />,
+      duration: 4000
+    });
   }
 
   return (
