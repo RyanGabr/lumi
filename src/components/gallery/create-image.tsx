@@ -17,7 +17,7 @@ export function CreateImage() {
         </button>
       </PopoverTrigger>
       <PopoverContent
-        className="w-sm relative p-0 rounded-xl border-border cursor-default"
+        className="w-sm relative p-0 rounded-xl border-border/50 cursor-default"
         align="start"
       >
         <CreateImageForm />

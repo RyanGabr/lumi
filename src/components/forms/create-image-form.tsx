@@ -5,8 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createImageSchema } from "@/schemas/create-image-schema";
 import type { CreateImageFormType } from "@/types/image";
 import { useCreateImage } from "@/hooks/use-images";
-import { PopoverClose } from "@radix-ui/react-popover";
-import { X } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { InformationCircleIcon } from "@heroicons/react/16/solid";
@@ -53,28 +51,10 @@ export function CreateImageForm({ onSuccess }: CreateImageFormProps) {
 
   return (
     <>
-      <header className="flex items-start justify-between p-4">
-        <div className="space-y-1">
-          <h3 className="font-medium text-sm">Adicionar imagem</h3>
-          {/* If categoryId exists => user is on a specific category page */}
-          {categoryId ? (
-            <p className="text-xs text-foreground/40">
-              A imagem será inserida nesta categoria.
-            </p>
-          ) : (
-            <p className="text-xs text-foreground/40">
-              A imagem será inserida na sua galeria.
-            </p>
-          )}
-        </div>
-        <PopoverClose className="cursor-pointer p-0.5 rounded hover:bg-foreground/5">
-          <X className="size-5 text-foreground/40" />
-        </PopoverClose>
-      </header>
       <form
         onSubmit={handleSubmit(handleCreateImage)}
         id="create-image-form"
-        className="p-4 pt-0"
+        className="p-3"
       >
         <div className="grid grid-cols-2 gap-3">
           <div className="col-span-2">
@@ -93,10 +73,10 @@ export function CreateImageForm({ onSuccess }: CreateImageFormProps) {
           </div>
         </div>
       </form>
-      <footer className="flex justify-end p-4 pt-0">
+      <footer className="flex justify-end p-3 pt-0">
         <Button
           variant="blue"
-          className="gap-1 text-xs h-8 rounded-sm w-full font-semibold"
+          className="gap-1 text-xs h-8 rounded-sm w-full"
           form="create-image-form"
           disabled={isPending}
           type="submit"

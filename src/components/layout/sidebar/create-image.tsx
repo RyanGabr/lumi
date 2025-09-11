@@ -19,7 +19,7 @@ export function CreateImage() {
           Adicionar imagem
         </SidebarComponent.Button>
       </PopoverTrigger>
-      <PopoverContent className="w-sm relative p-0 rounded-xl border-border cursor-default left-52" sideOffset={-10}>
+      <PopoverContent className="w-sm relative p-0 rounded-xl border-border/50 left-52" sideOffset={-10}>
         <CreateImageForm onSuccess={() => setPopoverIsOpen(false)} />
       </PopoverContent>
     </Popover>
