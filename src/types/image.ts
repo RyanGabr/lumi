@@ -10,6 +10,7 @@ export type ImageType = {
   user_id: string;
   path: string;
   created_at: string;
+  is_deleted: boolean;
 };
 
 export type CreateImageFormType = z.infer<typeof createImageSchema>;
