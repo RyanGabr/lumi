@@ -1,4 +1,4 @@
-import { useGetFavoriteImages } from "@/hooks/use-images";
+import { useGetFavoriteImages } from "@/hooks/use-get-images";
 import { StarIcon } from "@heroicons/react/16/solid";
 import { Loader2, StarOff } from "lucide-react";
 import { Image } from "../image/image";
