@@ -1,4 +1,4 @@
-import { useGetCategoryById } from "@/hooks/use-category";
+import { useGetCategoryById } from "@/hooks/use-get-categories";
 import { useLocation } from "react-router-dom";
 
 export function Overview() {
@@ -9,7 +9,7 @@ export function Overview() {
 
   return (
     <div className="space-y-2">
-      <h1 className="font-bold text-4xl tracking-tight text-foreground/90">
+      <h1 className="font-bold text-3xl tracking-tight text-foreground/90">
         {category?.name}
       </h1>
       {category.description && (

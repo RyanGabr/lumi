@@ -2,20 +2,21 @@ import { Controller, useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import type { EditCategoryFormType } from "@/types/category";
+import type { UpdateCategoryFormType } from "@/types/category";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { editCategorySchema } from "@/schemas/edit-category-schema";
+import { updateCategorySchema } from "@/schemas/update-category-schema";
 import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "../ui/select";
 import { categoryColors } from "@/lib/category-colors";
 import { useEffect, useState } from "react";
-import { useEditCategory, useGetCategoryById } from "@/hooks/use-category";
+import { useUpdateCategory } from "@/hooks/use-update-category";
+import { useGetCategoryById } from "@/hooks/use-get-categories";
 import { useLocation } from "react-router-dom";
 
 export function EditCategory() {
@@ -25,7 +26,7 @@ export function EditCategory() {
   const { data: category } = useGetCategoryById(categoryId);
 
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
-  const { mutateAsync, isPending } = useEditCategory();
+  const { mutateAsync, isPending } = useUpdateCategory();
 
   const {
     register,
@@ -33,8 +34,8 @@ export function EditCategory() {
     reset,
     control,
     formState: { errors },
-  } = useForm<EditCategoryFormType>({
-    resolver: zodResolver(editCategorySchema),
+  } = useForm<UpdateCategoryFormType>({
+    resolver: zodResolver(updateCategorySchema),
   });
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export function EditCategory() {
     }
   }, [category, reset]);
 
-  async function handleEditCategory(data: EditCategoryFormType) {
+  async function handleEditCategory(data: UpdateCategoryFormType) {
     await mutateAsync({
       ...data,
       id: category.id,

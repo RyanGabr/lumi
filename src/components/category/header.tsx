@@ -1,4 +1,4 @@
-import { useGetCategoryById } from "@/hooks/use-category";
+import { useGetCategoryById } from "@/hooks/use-get-categories";
 import { Squares2X2Icon } from "@heroicons/react/16/solid";
 import { SlashIcon } from "@heroicons/react/20/solid";
 import { useLocation } from "react-router-dom";

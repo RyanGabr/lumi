@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { useDeleteCategory } from "@/hooks/use-category";
+import { useDeleteCategory } from "@/hooks/use-delete-category";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export function DeleteDialog() {
