@@ -10,9 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import { useUser, type User } from "@supabase/auth-helpers-react";
-import {
-  ArrowUpRight
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function SidebarPerfil() {
   const navigate = useNavigate();
@@ -72,9 +70,11 @@ export function SidebarPerfil() {
         <DropdownMenuGroup className="p-1 text-foreground/85">
           <DropdownMenuItem>Configurações</DropdownMenuItem>
           <DropdownMenuItem>Enviar feedback</DropdownMenuItem>
-          <DropdownMenuItem>
-            Repositório do projeto <ArrowUpRight />
-          </DropdownMenuItem>
+          <a href="https://github.com/RyanGabr/lumi" target="_blank">
+            <DropdownMenuItem>
+              Repositório do projeto <ArrowUpRight />
+            </DropdownMenuItem>
+          </a>
           <DropdownMenuItem>
             Landing Page
             <ArrowUpRight />

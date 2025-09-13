@@ -8,7 +8,7 @@ interface SidebarRootProps {
 
 export function SidebarRoot({ children, className }: SidebarRootProps) {
   return (
-    <div className={cn("h-full w-72 space-y-5 p-2 cursor-default select-none bg-foreground/2 border-r border-border/50", className)}>
+    <div className={cn("h-full w-72 space-y-5 p-2 cursor-default select-none bg-foreground/3 dark:bg-foreground/2 border-r-[1.5px] border-border/50", className)}>
       {children}
     </div>
   );
