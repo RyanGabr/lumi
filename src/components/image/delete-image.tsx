@@ -11,25 +11,38 @@ import {
 } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { useState } from "react";
-import { useDeleteImage } from "@/hooks/use-images";
-import type { ImageType } from "@/types/image";
+import { useDeleteImage } from "@/hooks/use-delete-image";
 import { Trash2 } from "lucide-react";
+import { toast } from "sonner";
+import { useImage } from "./image";
 
-interface DeleteImageProps {
-  image: ImageType;
-}
+export function DeleteImage() {
+  const { id, path } = useImage();
 
-export function DeleteImage({ image }: DeleteImageProps) {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const { mutateAsync, isPending } = useDeleteImage();
 
   async function handleDeleteImage() {
     await mutateAsync({
-      id: image.id,
-      path: [image.path]
+      id: id,
+      path: [path],
     });
 
     setDialogIsOpen(false);
+    
+    /*
+      I'm using this code snippet to fix an error that occurs when closing a Dialog. After closing, 
+      the pointer-events: none; style was being retained in the body, resulting in no mouse events being captured on 
+      the entire page.
+    */
+    setTimeout(() => {
+      document.body.style.pointerEvents = "auto";
+    }, 0);
+
+    toast.info("Imagem removida", {
+      description: "Para recuperar a imagem, basta entrar na lixeira.",
+      duration: 4000,
+    });
   }
 
   return (
@@ -46,7 +59,10 @@ export function DeleteImage({ image }: DeleteImageProps) {
           Excluir
         </ContextMenuItem>
       </DialogTrigger>
-      <DialogContent className="w-sm rounded-xl">
+      <DialogContent
+        className="w-sm rounded-xl"
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
         <DialogHeader className="gap-1 pb-1">
           <DialogTitle className="font-semibold text-base text-center">
             Tem certeza dessa ação?
@@ -57,6 +73,7 @@ export function DeleteImage({ image }: DeleteImageProps) {
         </DialogHeader>
         <DialogFooter className="sm:flex-col gap-2">
           <Button
+            type="submit"
             onClick={handleDeleteImage}
             variant="destructive"
             className="w-full"
