@@ -1,4 +1,4 @@
-import { useGetImages } from "@/hooks/use-images";
+import { useGetImages } from "@/hooks/use-get-images";
 import { PhotoIcon } from "@heroicons/react/16/solid";
 import { CreateImage } from "./create-image";
 import { Image } from "../image/image";

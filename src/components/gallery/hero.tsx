@@ -13,7 +13,7 @@ export function GalleryHero() {
           <h1 className="font-bold text-3xl text-foreground/90 tracking-tight">
             Olá {username.split(" ")[0]}.
           </h1>
-          <h1 className="font-bold text-3xl text-foreground/50 tracking-tight">
+          <h1 className="font-bold text-3xl text-foreground/35 tracking-tight">
             Bem-vindo à sua galeria.
           </h1>
         </div>

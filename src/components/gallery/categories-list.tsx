@@ -1,6 +1,6 @@
 import { Squares2X2Icon } from "@heroicons/react/20/solid";
 import { CategoryCard } from "./category-card";
-import { useGetCategories } from "@/hooks/use-category";
+import { useGetCategories } from "@/hooks/use-get-categories";
 import { CreateCategory } from "./create-category";
 
 export function CategoriesList() {

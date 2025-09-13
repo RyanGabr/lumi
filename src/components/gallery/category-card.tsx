@@ -15,7 +15,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
         <div data-color={category.color} className="size-3 rounded-full" />
       </div>
       <div className="p-5">
-        <h3 className="font-medium text-foreground/60 text-sm leading-5">
+        <h3 className="font-semibold text-foreground/50 text-sm leading-5">
           {category.name}
         </h3>
       </div>
