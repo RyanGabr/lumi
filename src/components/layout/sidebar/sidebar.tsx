@@ -1,6 +1,6 @@
 import { Sidebar as SidebarComponent } from "./index";
 import { useLocation } from "react-router-dom";
-import { useGetCategories } from "@/hooks/use-category";
+import { useGetCategories } from "@/hooks/use-get-categories";
 import { CreateCategory } from "./create-category";
 import { CreateImage } from "./create-image";
 import { Inbox, Send, Settings, Star } from "lucide-react";
@@ -9,7 +9,7 @@ const sidebarItems = [
   { label: "Página inicial", icon: Inbox, href: "/gallery" },
   { label: "Favoritos", icon: Star, href: "/favorite" },
   { label: "Enviar feedback", icon: Send, href: "/feedback" },
-  { label: "Configurações", icon: Settings, href: "/feedback" },
+  { label: "Configurações", icon: Settings, href: "/settings" },
 ];
 
 export function Sidebar() {
@@ -29,7 +29,7 @@ export function Sidebar() {
               href={item.href}
               key={index}
               className={`${
-                location.pathname === item.href && "bg-foreground/6"
+                location.pathname === item.href && "bg-foreground/6 text-foreground/90"
               }`}
             >
               <IconName strokeWidth={2.2} className="size-4.5 text-ring" />
