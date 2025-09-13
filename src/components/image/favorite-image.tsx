@@ -1,26 +1,23 @@
 import { Star } from "lucide-react";
 import { ContextMenuItem } from "../ui/context-menu";
-import { useFavoriteImage } from "@/hooks/use-images";
-import type { ImageType } from "@/types/image";
+import { useFavoriteImage } from "@/hooks/use-update-image";
+import { useImage } from "./image";
 
-interface FavoriteImageProps {
-  image: ImageType;
-}
-
-export function FavoriteImage({ image }: FavoriteImageProps) {
+export function FavoriteImage() {
+  const { is_favorite, id } = useImage();
   const { mutateAsync, isPending } = useFavoriteImage();
 
-  const isFavorite = image.is_favorite;
+  const isFavorite = is_favorite;
 
   const handleClick = async () => {
-    await mutateAsync({ id: image.id, is_favorite: !isFavorite });
+    await mutateAsync({ id: id, is_favorite: !isFavorite });
   };
 
-  const label = image.is_favorite
+  const label = is_favorite
     ? "Remover dos favoritos"
     : "Adicionar aos favoritos";
 
-  const className = image.is_favorite
+  const className = is_favorite
     ? "focus:text-red-400 focus:[&_svg:not([class*='text-'])]:text-red-400"
     : "focus:text-yellow-400 focus:[&_svg:not([class*='text-'])]:text-yellow-400";
 

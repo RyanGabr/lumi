@@ -1,15 +1,13 @@
 import { Download } from "lucide-react";
 import { ContextMenuItem } from "../ui/context-menu";
 import { supabase } from "@/lib/supabase";
-import type { ImageType } from "@/types/image";
+import { useImage } from "./image";
 
-interface DownloadImageProps {
-  image: ImageType;
-}
+export function DownloadImage() {
+  const { path } = useImage();
 
-export function DownloadImage({ image }: DownloadImageProps) {
   async function downloadImage() {
-    const { data } = supabase.storage.from("images").getPublicUrl(image.path);
+    const { data } = supabase.storage.from("images").getPublicUrl(path);
 
     const publicUrl: string = data?.publicUrl ?? "";
     if (!publicUrl) {
@@ -29,7 +27,7 @@ export function DownloadImage({ image }: DownloadImageProps) {
       const link: HTMLAnchorElement = document.createElement("a");
       link.href = url;
 
-      const fileName: string = image.path.split("/").pop() ?? "download.png";
+      const fileName: string = path.split("/").pop() ?? "download.png";
       link.download = fileName;
 
       document.body.appendChild(link);
