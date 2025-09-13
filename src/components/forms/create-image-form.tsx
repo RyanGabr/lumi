@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createImageSchema } from "@/schemas/create-image-schema";
 import type { CreateImageFormType } from "@/types/image";
-import { useCreateImage } from "@/hooks/use-images";
+import { useCreateImage } from "@/hooks/use-create-image";
 import { useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { InformationCircleIcon } from "@heroicons/react/16/solid";

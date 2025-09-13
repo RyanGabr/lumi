@@ -1,4 +1,4 @@
-import { useCreateCategory } from "@/hooks/use-category";
+import { useCreateCategory } from "@/hooks/use-create-category";
 import { createCategorySchema } from "@/schemas/create-category-schema";
 import type { CreateCategoryFormType } from "@/types/category";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -131,7 +131,7 @@ export function CreateCategoryForm({ onSuccess }: CreateCategoryFormProps) {
           </div>
         </div>
       </form>
-      <footer className="flex justify-end p-4 pt-0">
+      <footer className="flex justify-end p-3 pt-0">
         <Button
           variant="blue"
           className="h-9 rounded-sm w-full text-xs"
