@@ -6,6 +6,7 @@ import { ProtectedRoute } from "./protected-route";
 import { Category } from "@/pages/app/category";
 import { Favorite } from "@/pages/app/favorite";
 import { Feedback } from "@/pages/app/feedback";
+import { Trash } from "@/pages/app/trash";
 
 export const routes = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const routes = createBrowserRouter([
           {
             path: "feedback",
             element: <Feedback />,
+          },
+          {
+            path: "trash",
+            element: <Trash />,
           },
         ],
       },

@@ -2,7 +2,7 @@ import type { createImageSchema } from "@/schemas/create-image-schema";
 import type z from "zod";
 
 export type ImageType = {
-  category_id: string;
+  category_id: string | null;
   description: string;
   id: string;
   image_url: string;
@@ -14,3 +14,7 @@ export type ImageType = {
 };
 
 export type CreateImageFormType = z.infer<typeof createImageSchema>;
+
+export type UpdateImageType = Partial<
+  Omit<ImageType, "id" | "image_url" | "user_id" | "path" | "created_at">
+>;

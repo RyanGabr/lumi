@@ -9,6 +9,7 @@ export function useGetImages() {
       const { data, error } = await supabase
         .from("images")
         .select("*")
+        .eq("is_deleted", false)
         .order("created_at", { ascending: false });
 
       if (error) throw error;
@@ -42,6 +43,22 @@ export function useGetFavoriteImages() {
         .from("images")
         .select("*")
         .eq("is_favorite", "TRUE");
+
+      if (error) throw error;
+
+      return data;
+    },
+  });
+}
+
+export function useGetTrashedImages() {
+  return useSuspenseQuery<ImageType[]>({
+    queryKey: ["trashed-images"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("images")
+        .select("*")
+        .eq("is_deleted", "TRUE");
 
       if (error) throw error;
 

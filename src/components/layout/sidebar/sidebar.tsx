@@ -3,13 +3,14 @@ import { useLocation } from "react-router-dom";
 import { useGetCategories } from "@/hooks/use-get-categories";
 import { CreateCategory } from "./create-category";
 import { CreateImage } from "./create-image";
-import { Inbox, Send, Settings, Star } from "lucide-react";
+import { Inbox, Send, Settings, Star, Trash2 } from "lucide-react";
 
 const sidebarItems = [
   { label: "Página inicial", icon: Inbox, href: "/gallery" },
   { label: "Favoritos", icon: Star, href: "/favorite" },
   { label: "Enviar feedback", icon: Send, href: "/feedback" },
   { label: "Configurações", icon: Settings, href: "/settings" },
+  { label: "Lixeira", icon: Trash2, href: "/trash" },
 ];
 
 export function Sidebar() {

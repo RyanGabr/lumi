@@ -1,5 +1,34 @@
 import { supabase } from "@/lib/supabase";
+import type { UpdateImageType } from "@/types/image";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+export function useUpdateImage() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      data,
+    }: {
+      id: string;
+      data: UpdateImageType;
+    }) => {
+      const { error } = await supabase
+        .from("images")
+        .update(data)
+        .eq("id", id)
+        .single();
+
+      if (error) {
+        throw new Error(error.message);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["images"] });
+      queryClient.invalidateQueries({ queryKey: ["trashed-images"] });
+    },
+  });
+}
 
 export function useUpdateImageCategory() {
   const queryClient = useQueryClient();
