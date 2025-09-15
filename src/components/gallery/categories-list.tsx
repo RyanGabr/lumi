@@ -2,9 +2,33 @@ import { Squares2X2Icon } from "@heroicons/react/20/solid";
 import { CategoryCard } from "./category-card";
 import { useGetCategories } from "@/hooks/use-get-categories";
 import { CreateCategory } from "./create-category";
+import { useEffect, useState } from "react";
+
+// Future feature => slide with category cards
 
 export function CategoriesList() {
   const { data: categories } = useGetCategories();
+
+  // Decrease the number of Cards shown according to the user's resolution, the lower the resolution, the fewer Cards will be displayed
+  const [itemsToShow, setItemsToShow] = useState(5);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setItemsToShow(2);
+      } else if (window.innerWidth < 1024) {
+        setItemsToShow(3);
+      } else if (window.innerWidth < 1280) {
+        setItemsToShow(4);
+      } else {
+        setItemsToShow(5);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   if (!categories || categories.length === 0) {
     return (
@@ -31,9 +55,9 @@ export function CategoriesList() {
         Categorias recentes
       </span>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 items-center">
-        {categories?.slice(0, 5).map((category, index) => (
+        {categories?.slice(0, itemsToShow).map((category) => (
           <CategoryCard
-            key={index}
+            key={category.id}
             category={category}
           />
         ))}
