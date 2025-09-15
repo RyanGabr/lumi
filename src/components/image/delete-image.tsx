@@ -29,18 +29,9 @@ export function DeleteImage() {
     });
 
     setDialogIsOpen(false);
-    
-    /*
-      I'm using this code snippet to fix an error that occurs when closing a Dialog. After closing, 
-      the pointer-events: none; style was being retained in the body, resulting in no mouse events being captured on 
-      the entire page.
-    */
-    setTimeout(() => {
-      document.body.style.pointerEvents = "auto";
-    }, 0);
 
     toast.info("Imagem removida", {
-      description: "Para recuperar a imagem, basta entrar na lixeira.",
+      description: "Sua imagem foi completamente excluída da galeria",
       duration: 4000,
     });
   }
