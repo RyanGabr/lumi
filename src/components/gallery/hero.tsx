@@ -1,22 +1,25 @@
 import { useUser } from "@supabase/auth-helpers-react";
-import { Logo } from "../ui/logo";
 
 export function GalleryHero() {
   const user = useUser();
   const username = user?.user_metadata.name;
 
+  function getGreeting() {
+    const hours = new Date().getHours();
+    if (hours >= 5 && hours < 12) return "Bom dia";
+    if (hours >= 12 && hours < 18) return "Boa tarde";
+    return "Boa noite";
+  }
+
+  const userFirstName = username.split(" ")[0];
+  const userLastName = username.split(" ")[1] ?? "";
+
   return (
-    <div className="w-full flex flex-col justify-center gap-6 h-44">
-      <div className="flex flex-col gap-4">
-        <Logo />
-        <div className="">
-          <h1 className="font-bold text-3xl text-foreground/90 tracking-tight">
-            Olá {username.split(" ")[0]}.
-          </h1>
-          <h1 className="font-bold text-3xl text-foreground/35 tracking-tight">
-            Bem-vindo à sua galeria.
-          </h1>
-        </div>
+    <div className="w-full flex items-center justify-center gap-6 h-32">
+      <div className="flex items-center gap-2">
+        <h1 className="font-bold text-3xl text-foreground/90 tracking-tight">
+          {getGreeting()}, {userFirstName} {userLastName}
+        </h1>
       </div>
     </div>
   );
