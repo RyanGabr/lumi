@@ -6,6 +6,8 @@ import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 
+// Mudanças feitas => Alterei o tamanho da logo (apagar isso quando for commitar)
+
 export function Auth() {
   useAuthRedirect();
 
@@ -34,7 +36,7 @@ export function Auth() {
   return (
     <div className="w-full h-screen flex items-center justify-center p-10 sm:p-0">
       <div className="flex flex-col gap-7 w-96">
-        <Logo />
+        <Logo className="size-14"/>
         <div className="leading-9">
           <h3 className="font-bold text-2xl tracking-tight">
             Bem-vindo ao Lumi
