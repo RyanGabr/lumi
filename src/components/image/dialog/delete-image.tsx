@@ -1,4 +1,10 @@
-import { ContextMenuItem } from "../ui/context-menu";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
+import { Trash2 } from "lucide-react";
+import { toast } from "sonner";
+import { useImage } from "../image";
+import { useDeleteImage } from "@/hooks/use-delete-image";
+import { useState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -8,13 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
-import { useState } from "react";
-import { useDeleteImage } from "@/hooks/use-delete-image";
-import { Trash2 } from "lucide-react";
-import { toast } from "sonner";
-import { useImage } from "./image";
+} from "@/components/ui/dialog";
 
 export function DeleteImage() {
   const { id, path } = useImage();
@@ -38,22 +38,17 @@ export function DeleteImage() {
 
   return (
     <Dialog open={dialogIsOpen} onOpenChange={setDialogIsOpen}>
-      <DialogTrigger asChild>
-        <ContextMenuItem
-          onClick={(e) => {
-            e.preventDefault();
-            setDialogIsOpen(true);
-          }}
-          className="focus:text-red-400 focus:[&_svg:not([class*='text-'])]:text-red-400"
-        >
-          <Trash2 />
-          Excluir
-        </ContextMenuItem>
+      <DialogTrigger>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="ghost" size="sm">
+              <Trash2 className="size-4.5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Excluir imagem</TooltipContent>
+        </Tooltip>
       </DialogTrigger>
-      <DialogContent
-        className="w-sm rounded-xl"
-        onOpenAutoFocus={(e) => e.preventDefault()}
-      >
+      <DialogContent className="w-sm rounded-xl">
         <DialogHeader className="gap-1 pb-1">
           <DialogTitle className="font-semibold text-base text-center">
             Tem certeza dessa ação?

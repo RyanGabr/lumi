@@ -1,12 +1,13 @@
-import { ContextMenuItem } from "../ui/context-menu";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
-import { useImage } from "./image";
+import { useImage } from "../image";
 import { useUpdateImage } from "@/hooks/use-update-image";
 
 export function TrashImage() {
   const { id } = useImage();
-  const { mutateAsync, isPending } = useUpdateImage();
+  const { mutateAsync } = useUpdateImage();
 
   async function moveImageToTrash() {
     await mutateAsync({
@@ -20,13 +21,13 @@ export function TrashImage() {
   }
 
   return (
-    <ContextMenuItem
-      onClick={moveImageToTrash}
-      disabled={isPending}
-      className="focus:text-red-400 focus:[&_svg:not([class*='text-'])]:text-red-400"
-    >
-      <Trash2 />
-      Mover para a lixeira
-    </ContextMenuItem>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button onClick={moveImageToTrash} variant="ghost" size="sm">
+          <Trash2 className="size-4.5" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Mover para a lixeira</TooltipContent>
+    </Tooltip>
   );
 }

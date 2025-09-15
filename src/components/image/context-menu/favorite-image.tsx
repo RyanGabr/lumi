@@ -1,7 +1,7 @@
 import { Star } from "lucide-react";
-import { ContextMenuItem } from "../ui/context-menu";
+import { ContextMenuItem } from "@/components/ui/context-menu";
 import { useFavoriteImage } from "@/hooks/use-update-image";
-import { useImage } from "./image";
+import { useImage } from "../image";
 
 export function FavoriteImage() {
   const { is_favorite, id } = useImage();

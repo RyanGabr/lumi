@@ -2,10 +2,10 @@ import {
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
-} from "../ui/context-menu";
+} from "@/components/ui/context-menu";
 import { Text } from "lucide-react";
 import { useRef } from "react";
-import { useImage } from "./image";
+import { useImage } from "../image";
 
 export function ImageDescription() {
   const { description } = useImage();

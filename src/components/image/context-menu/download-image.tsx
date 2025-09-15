@@ -1,7 +1,7 @@
 import { Download } from "lucide-react";
-import { ContextMenuItem } from "../ui/context-menu";
+import { ContextMenuItem } from "../../ui/context-menu";
 import { supabase } from "@/lib/supabase";
-import { useImage } from "./image";
+import { useImage } from "../image";
 
 export function DownloadImage() {
   const { path } = useImage();

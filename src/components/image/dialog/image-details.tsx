@@ -1,6 +1,6 @@
-import { DialogContent } from "../ui/dialog";
+import { DialogContent } from "../../ui/dialog";
 import { Options } from "./options";
-import { useImage } from "./image";
+import { useImage } from "../image";
 
 export function ImageDetails() {
   const { image_url } = useImage();

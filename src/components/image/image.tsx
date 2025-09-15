@@ -2,9 +2,9 @@ import { Star } from "lucide-react";
 import { ContextMenu, ContextMenuTrigger } from "../ui/context-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import type { ImageType } from "@/types/image";
-import { ImageContextMenu } from "./image-context-menu";
+import { ImageContextMenu } from "./context-menu/image-context-menu";
 import { Dialog, DialogTrigger } from "../ui/dialog";
-import { ImageDetails } from "./image-details";
+import { ImageDetails } from "./dialog/image-details";
 import { createContext, useContext } from "react";
 
 interface ImageProps {

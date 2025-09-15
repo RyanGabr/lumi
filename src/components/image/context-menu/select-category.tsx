@@ -4,10 +4,10 @@ import {
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
-} from "../ui/context-menu";
+} from "@/components/ui/context-menu";
 import { useGetCategories } from "@/hooks/use-get-categories";
 import { useUpdateImageCategory } from "@/hooks/use-update-image";
-import { useImage } from "./image";
+import { useImage } from "../image";
 
 export function SelectCategory() {
   const { category_id, id } = useImage();

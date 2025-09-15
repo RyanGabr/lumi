@@ -1,8 +1,8 @@
 import { Undo2 } from "lucide-react";
-import { ContextMenuItem } from "../ui/context-menu";
 import { useUpdateImage } from "@/hooks/use-update-image";
-import { useImage } from "./image";
 import { toast } from "sonner";
+import { useImage } from "../image";
+import { ContextMenuItem } from "@/components/ui/context-menu";
 
 export function RecoverImage() {
   const { id } = useImage();
