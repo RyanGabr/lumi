@@ -1,9 +1,13 @@
 import { Header } from "@/components/trash/header";
 import { ImagesList } from "@/components/trash/images-list";
 import { LoadingPage } from "@/components/ui/loading-page";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 export function Trash() {
+  useEffect(() => {
+    document.title = "Lumi | Lixeira";
+  }, []);
+
   return (
     <Suspense fallback={<LoadingPage />}>
       <Header />
