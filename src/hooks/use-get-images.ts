@@ -18,14 +18,30 @@ export function useGetImages() {
   });
 }
 
-export function useGetImagesByCategoryId(categoryId: string) {
-  return useSuspenseQuery<ImageType[]>({
-    queryKey: ["images", categoryId],
+export function useGetImageById(imageId: string) {
+  return useSuspenseQuery<ImageType>({
+    queryKey: ["image", imageId],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("images")
         .select("*")
-        .eq("category_id", categoryId)
+        .eq("id", imageId)
+        .single();
+
+      if (error) throw error;
+      return data;
+    },
+  });
+}
+
+export function useGetImagesByCollectionId(collectionId: string) {
+  return useSuspenseQuery<ImageType[]>({
+    queryKey: ["images", collectionId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("images")
+        .select("*")
+        .eq("category_id", collectionId)
         .order("created_at", { ascending: false });
 
       if (error) throw error;

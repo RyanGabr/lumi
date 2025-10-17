@@ -25,9 +25,9 @@ export function ImagesList() {
     return (
       <div className="select-none w-full h-96 flex flex-col gap-2 items-center justify-center">
         <StarOff className="size-10 text-ring mb-2" />
-        <h3 className="font-semibold">Sem imagens por aqui!</h3>
+        <h3 className="font-semibold text-sm">Sem imagens por aqui!</h3>
         <p className="text-sm text-foreground/50">
-          Adicione uma imagem como favorito.
+          Adicione uma imagem como favorito
         </p>
       </div>
     );

@@ -18,9 +18,12 @@ export function useCreateImage() {
     mutationFn: async (formData: CreateImageFormType) => {
       if (!user) throw new Error("User not logged in");
 
+      const timestamp = Date.now();
       const safeFileName = sanitizeFileName(formData.file.name);
-      const categoryFolder = formData.category_id ?? "uncategorized";
-      const filePath = `users/${user.id}/categories/${categoryFolder}/${safeFileName}`;
+      const collectionFolder = formData.category_id ?? "uncategorized";
+
+      // Cria um nome único com timestamp
+      const filePath = `users/${user.id}/categories/${collectionFolder}/${timestamp}-${safeFileName}`;
 
       // Image archive upload
       const { error: uploadError } = await supabase.storage

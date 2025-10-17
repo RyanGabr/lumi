@@ -17,9 +17,9 @@ interface CreateImageFormProps {
 export function CreateImageForm({ onSuccess }: CreateImageFormProps) {
   const { mutateAsync, isPending } = useCreateImage();
 
-  // If the user is on a specific category page, capture the id
+  // If the user is on a specific collection page, capture the id
   const location = useLocation();
-  const categoryId = location.search.replace("?", "");
+  const collectionId = location.search.replace("?", "");
 
   const {
     handleSubmit,
@@ -30,7 +30,7 @@ export function CreateImageForm({ onSuccess }: CreateImageFormProps) {
     resolver: zodResolver(createImageSchema),
     defaultValues: {
       description: undefined,
-      category_id: categoryId ? categoryId : undefined, // If categoryId exists in the search parameters, it means the user is on a page of a specific category and will create the image through the category. Then use the categoryId to create the image.
+      category_id: collectionId ? collectionId : undefined, // If collectionId exists in the search parameters, it means the user is on a page of a specific collection and will create the image through the collection. Then use the collectionId to create the image.
       is_favorite: false,
     },
     mode: "onSubmit",
@@ -75,8 +75,8 @@ export function CreateImageForm({ onSuccess }: CreateImageFormProps) {
       </form>
       <footer className="flex justify-end p-3 pt-0">
         <Button
-          variant="blue"
-          className="gap-1 text-xs h-8 rounded-sm w-full"
+          variant="purple"
+          className="h-9 rounded-sm w-full text-[13px]"
           form="create-image-form"
           disabled={isPending}
           type="submit"

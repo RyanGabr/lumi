@@ -1,13 +1,14 @@
-import { Trash2 } from "lucide-react";
 import { EmptyTrash } from "./empty-trash";
+import { TrashIcon } from "@heroicons/react/20/solid";
 
 export function Header() {
   return (
     <div className="flex flex-col">
       <header className="w-full flex items-center justify-between py-2 px-5">
         {/* Left side */}
-        <div className="cursor-default select-none">
-          <span className="font-semibold text-sm">Lixeira</span>
+        <div className="cursor-default select-none flex items-center gap-1.5">
+          <TrashIcon className="size-4.5 fill-ring"/>
+          <span className="font-medium text-sm">Lixeira</span>
         </div>
 
         {/* Right side */}
@@ -18,10 +19,10 @@ export function Header() {
 
       {/* Banner */}
       <div className="relative">
-        <div className="h-32 w-full bg-foreground/10" />
+        <div className="bg-foreground h-36 w-full opacity-10" />
         <div className="w-full xl:w-10/12 2xl:w-8/12 mx-auto px-5 md:px-10">
-          <div className="size-16 bg-background rounded-xl border-2 border-border flex items-center justify-center absolute -bottom-10">
-            <Trash2 className="size-8 text-ring" />
+          <div className="bg-ring size-14 rounded-xl border-2 border-background flex items-center justify-center absolute -bottom-10 p-2">
+            <TrashIcon className="fill-white" />
           </div>
         </div>
       </div>

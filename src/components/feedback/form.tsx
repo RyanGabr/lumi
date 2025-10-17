@@ -1,4 +1,4 @@
-import { ArrowRight, AtSign } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import { useUser } from "@supabase/auth-helpers-react";
@@ -8,12 +8,14 @@ export function Form() {
   const user = useUser();
   const [feedbackText, setFeedbackText] = useState<string | undefined>();
 
+  const avatarUrl = user?.user_metadata?.avatar_url;
+
   return (
     <>
       <h1 className="text-3xl font-bold text-foreground/90 tracking-tight">
         Como podemos melhorar?
       </h1>
-      <div className="w-full p-3.5 border border-border/40 bg-foreground/3 rounded-2xl focus-within:border-border">
+      <div className="w-full p-3.5 border-2 border-border/40 bg-foreground/3 rounded-2xl focus-within:border-(--purple)">
         {/* Textarea */}
         <textarea
           placeholder="Nos conte o que você está achando da experiência em usar nosso app..."
@@ -30,8 +32,8 @@ export function Form() {
         <div className="flex items-center justify-between">
           <Tooltip>
             <TooltipTrigger>
-              <div className="px-3 py-1 rounded-md bg-foreground/7 flex items-center gap-1.5 cursor-pointer hover:bg-foreground/10">
-                <AtSign className="size-4" />
+              <div className="px-2.5 py-1.5 rounded-full bg-background border flex items-center gap-2 cursor-pointer hover:bg-foreground/2">
+                <img src={avatarUrl} alt="User profile picture" className="size-5 rounded-full"/>
                 <span className="font-medium text-sm text-foreground/70">
                   {user?.email ?? "Nenhuma identificação encontrada"}
                 </span>

@@ -1,12 +1,13 @@
 import { Layout } from "@/components/layout/layout";
-import { Gallery } from "@/pages/app/gallery";
+import { Home } from "@/pages/app/home";
 import { Auth } from "@/pages/auth/auth";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "./protected-route";
-import { Category } from "@/pages/app/category";
+import { Collection } from "@/pages/app/collection";
 import { Favorite } from "@/pages/app/favorite";
 import { Feedback } from "@/pages/app/feedback";
 import { Trash } from "@/pages/app/trash";
+import { ImageDetails } from "@/pages/app/image-details";
 
 export const routes = createBrowserRouter([
   {
@@ -19,19 +20,19 @@ export const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="gallery" replace />,
+        element: <Navigate to="home" replace />,
       },
       {
         path: "",
         element: <Layout />,
         children: [
           {
-            path: "gallery",
-            element: <Gallery />,
+            path: "home",
+            element: <Home />,
           },
           {
-            path: "category",
-            element: <Category />,
+            path: "collection",
+            element: <Collection />,
           },
           {
             path: "favorite",
@@ -46,6 +47,10 @@ export const routes = createBrowserRouter([
             element: <Trash />,
           },
         ],
+      },
+      {
+        path: "details",
+        element: <ImageDetails />,
       },
     ],
   },

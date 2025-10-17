@@ -5,7 +5,15 @@
 
 * {
   -webkit-font-smoothing: antialiased;
-  font-family: -apple-system, BlinkMacSystemFont, "inter-variable", system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "inter-variable", system-ui,
+    sans-serif;
+}
+
+img {
+  image-rendering: high-quality;
+  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
 }
 
 @theme inline {
@@ -62,11 +70,11 @@
   --muted-foreground: oklch(0.552 0.016 285.938);
   --accent: oklch(0.967 0.001 286.375);
   --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: #e55447;
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.705 0.015 286.067);
-  --blue: rgb(50, 134, 218);
+  --purple: lch(53 52.26 286.91);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -83,11 +91,11 @@
 }
 
 .dark {
-  --background: rgb(25, 25, 25);
+  --background: lch(4.8 0.7 272);
   --foreground: oklch(0.985 0 0);
   --card: rgb(32, 32, 32);
   --card-foreground: oklch(0.985 0 0);
-  --popover: rgb(37, 37, 37);
+  --popover: lch(10.633 1.867 272);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.92 0.004 286.32);
   --primary-foreground: oklch(0.21 0.006 285.885);
@@ -101,7 +109,9 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: rgb(130, 130, 130);
-  --blue: rgb(50, 134, 218);
+  --purple: lch(47.918 59.303 288.421);
+  --purple-2: rgb(136, 140, 255);
+  --border-purple: rgb(108, 120, 230);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -133,7 +143,12 @@
   @apply bg-red-400;
 }
 [data-color="green"] {
-  @apply bg-green-400;
+  @apply bg-green-700;
+}
+.dark {
+  [data-color="green"] {
+    @apply bg-green-500;
+  }
 }
 [data-color="amber"] {
   @apply bg-amber-400;
@@ -147,15 +162,11 @@
 
 *::-webkit-scrollbar {
   height: 10px;
-  width: 10px;
+  width: 7px;
 }
 *::-webkit-scrollbar-track {
   border-radius: 0px;
   background-color: var(--card);
-}
-
-*::-webkit-scrollbar-track:active {
-  background-color: #B8C0C2;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -164,5 +175,10 @@
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: var(--ring);
+  background-color: var(--border);
+}
+
+.dark .settings-dialog {
+  box-shadow: 0 0 0 1px #30302e, 0px 24px 48px -8px #0000007a,
+    0px 4px 12px -1px #0000003d;
 }

@@ -8,7 +8,7 @@ export function useAuthRedirect() {
 
   useEffect(() => {
     if (session?.access_token) {
-      navigate('/gallery');
+      navigate('/home');
     }
   }, [session, navigate]);
 }

@@ -1,12 +1,12 @@
 import { SidebarButton } from "./sidebar-button";
-import { SidebarCategory } from "./sidebar-category";
+import { SidebarCollection } from "./sidebar-collection";
 import { SidebarItem } from "./sidebar-item";
 import { SidebarPerfil } from "./sidebar-perfil";
 import { SidebarRoot } from "./sidebar-root";
 
 export const Sidebar = {
   Button: SidebarButton,
-  Category: SidebarCategory,
+  Collection: SidebarCollection,
   Item: SidebarItem,
   Perfil: SidebarPerfil,
   Root: SidebarRoot

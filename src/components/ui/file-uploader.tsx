@@ -1,8 +1,7 @@
-import { AlertCircleIcon, XIcon } from "lucide-react";
+import { AlertCircleIcon, ArchiveRestore, XIcon } from "lucide-react";
 
 import { useFileUpload } from "@/hooks/use-file-upload";
 import { useEffect } from "react";
-import { ArchiveBoxArrowDownIcon } from "@heroicons/react/20/solid";
 
 type FileUploaderProps = {
   value?: File | null;
@@ -71,7 +70,7 @@ export default function FileUploader({ onChange, value }: FileUploaderProps) {
           ) : (
             <div className="flex flex-col items-center justify-center px-4 py-3 text-center gap-2">
               <div aria-hidden="true">
-                <ArchiveBoxArrowDownIcon className="size-6 opacity-40" />
+                <ArchiveRestore className="size-6 opacity-40" />
               </div>
               <p className="text-xs font-medium text-muted-foreground">
                 Solte sua imagem aqui ou clique para selecionar

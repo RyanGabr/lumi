@@ -1,7 +1,6 @@
 import { GoogleIcon } from "@/components/auth/google-icon";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
-import { Separator } from "@/components/ui/separator";
 import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
@@ -21,7 +20,7 @@ export function Auth() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:5173/gallery",
+        redirectTo: "http://localhost:5173/home",
       },
     });
 
@@ -35,28 +34,24 @@ export function Auth() {
 
   return (
     <div className="w-full h-screen flex items-center justify-center p-10 sm:p-0">
-      <div className="flex flex-col gap-7 w-96">
-        <Logo className="size-14"/>
-        <div className="leading-9">
+      <div className="flex flex-col items-center gap-7 w-96">
+        <Logo className="size-16" />
+        <div className="text-center space-y-2">
           <h3 className="font-bold text-2xl tracking-tight">
             Bem-vindo ao Lumi
           </h3>
-          <h3 className="font-bold text-2xl tracking-tight text-foreground/50">
-            Guardar, organizar e valorizar.
+          <h3 className="font-medium text-foreground/50 text-sm">
+            Organize e mantenha suas imagens sempre acessíveis
           </h3>
         </div>
-        <p className="text-sm text-foreground/50">
-          Entre com sua conta utilizando o serviço do Google.
-        </p>
-        <Separator />
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 w-full">
           <Button
-            variant="blue"
+            variant="outline"
             onClick={handleGoogleSignIn}
-            className="text-sm cursor-pointer rounded-sm"
+            className="text-sm rounded-sm dark:bg-transparent"
             size="lg"
           >
-            <GoogleIcon />
+            <GoogleIcon className="size-4" />
             Conectar com Google
           </Button>
           {errorMessage && (

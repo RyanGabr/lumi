@@ -18,6 +18,7 @@ export function useUpdateImage() {
       }
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["image"] });
       queryClient.invalidateQueries({ queryKey: ["images"] });
       queryClient.invalidateQueries({ queryKey: ["trashed-images"] });
       queryClient.invalidateQueries({ queryKey: ["favorite-images"] });
@@ -25,7 +26,7 @@ export function useUpdateImage() {
   });
 }
 
-export function useUpdateImageCategory() {
+export function useUpdateImageCollection() {
   const queryClient = useQueryClient();
 
   return useMutation({

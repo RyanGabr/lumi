@@ -6,8 +6,7 @@ import { FavoriteImage } from "./favorite-image";
 import { DownloadImage } from "./download-image";
 import { useImage } from "../image";
 import { DeleteImage } from "./delete-image";
-import { SelectCategory } from "./select-category";
-import { ImageDescription } from "./image-description";
+import { SelectCollection } from "./select-collection";
 import { TrashImage } from "./trash-image";
 import { RecoverImage } from "./recover-image";
 
@@ -19,8 +18,7 @@ export function ImageContextMenu() {
       {is_deleted === false ? (
         <>
           <FavoriteImage />
-          <SelectCategory />
-          <ImageDescription />
+          <SelectCollection />
           <DownloadImage />
           <ContextMenuSeparator className="mx-2" />
           <TrashImage />

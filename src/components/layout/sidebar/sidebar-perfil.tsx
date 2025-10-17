@@ -10,11 +10,16 @@ import {
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import { useUser, type User } from "@supabase/auth-helpers-react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Bolt, Moon, Sun } from "lucide-react";
+import { ButtonGroup } from "@/components/ui/button-group";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/components/ui/theme-provider";
 
 export function SidebarPerfil() {
   const navigate = useNavigate();
   const user: User | null = useUser();
+
+  const { theme, setTheme } = useTheme();
 
   async function handleLogout() {
     const { error } = await supabase.auth.signOut();
@@ -59,17 +64,56 @@ export function SidebarPerfil() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="start"
-        className="p-0 min-w-64 rounded-lg shadow-2xl shadow-black/30"
+        className="p-0 min-w-64 rounded-lg shadow-2xl dark:shadow-black/30"
       >
         {/* Dropdown Perfil Details */}
-        <div className="flex flex-col p-3 cursor-default select-none">
-          <h3 className="text-sm font-medium text-foreground/85">{fullName}</h3>
-          <p className="text-xs font-medium text-foreground/50">{email}</p>
+        <div className="flex flex-col items-center justify-center gap-3 px-3 py-5 cursor-default select-none">
+          <img
+            src={avatarUrl}
+            alt="User profile picture"
+            className="rounded-full w-16"
+          />
+          <div className="text-center">
+            <h3 className="text-sm font-medium text-foreground/85">
+              {fullName}
+            </h3>
+            <p className="text-xs font-medium text-foreground/50">{email}</p>
+          </div>
         </div>
+
+        <ButtonGroup className="p-2 flex w-full divide-x">
+          <Button
+            data-theme={theme}
+            variant="secondary"
+            className="flex-1 data-[theme=dark]:bg-foreground/10"
+            onClick={() => setTheme("dark")}
+          >
+            <Moon />
+          </Button>
+          <Button
+            data-theme={theme}
+            variant="secondary"
+            className="flex-1 data-[theme=light]:bg-foreground/10"
+            onClick={() => setTheme("light")}
+          >
+            <Sun />
+          </Button>
+          <Button
+            data-theme={theme}
+            variant="secondary"
+            className="flex-1 data-[theme=system]:bg-foreground/10"
+            onClick={() => setTheme("system")}
+          >
+            <Bolt />
+          </Button>
+        </ButtonGroup>
+
         <DropdownMenuSeparator className="mx-2 my-0" />
+
         <DropdownMenuGroup className="p-1 text-foreground/85">
-          <DropdownMenuItem>Configurações</DropdownMenuItem>
-          <DropdownMenuItem>Enviar feedback</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => navigate("feedback")}>
+            Enviar feedback
+          </DropdownMenuItem>
           <a href="https://github.com/RyanGabr/lumi" target="_blank">
             <DropdownMenuItem>
               Repositório do projeto <ArrowUpRight />
@@ -80,7 +124,9 @@ export function SidebarPerfil() {
             <ArrowUpRight />
           </DropdownMenuItem>
         </DropdownMenuGroup>
+
         <DropdownMenuSeparator className="mx-2 my-0" />
+
         <DropdownMenuGroup className="p-1 text-foreground/85">
           <DropdownMenuItem
             onClick={handleLogout}
