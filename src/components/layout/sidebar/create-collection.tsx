@@ -1,27 +1,25 @@
 import { Sidebar as SidebarComponent } from ".";
-import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { useState } from "react";
 import { CreateCollectionForm } from "@/components/forms/create-collection-form";
 import { FolderPlus } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export function CreateCollection() {
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   return (
-    <Popover open={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
-      <PopoverTrigger asChild>
+    <Dialog open={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
+      <DialogTrigger asChild>
         <SidebarComponent.Button>
           <FolderPlus strokeWidth={2.2} className="size-4.5 text-ring" />
           Nova coleção
         </SidebarComponent.Button>
-      </PopoverTrigger>
-      <PopoverContent
-        className="left-50 w-sm relative p-0 rounded-xl"
-        align="end"
-        sideOffset={-10}
+      </DialogTrigger>
+      <DialogContent
+        className="w-xl dialog"
       >
         <CreateCollectionForm onSuccess={() => setPopoverIsOpen(false)}/>
-      </PopoverContent>
-    </Popover>
+      </DialogContent>
+    </Dialog>
   );
 }

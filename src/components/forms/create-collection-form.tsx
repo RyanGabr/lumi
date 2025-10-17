@@ -10,13 +10,11 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "../ui/select";
 import { collectionColors } from "@/lib/collection-colors";
 import { Button } from "../ui/button";
-import { AtSign, CircleXIcon } from "lucide-react";
 import { toast } from "sonner";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { FolderIcon } from "@heroicons/react/20/solid";
 
 // Using this prop to close the popover
 interface CreateCollectionFormProps {
@@ -31,13 +29,16 @@ export function CreateCollectionForm({ onSuccess }: CreateCollectionFormProps) {
     handleSubmit,
     reset,
     control,
+    watch,
     formState: { errors },
   } = useForm<CreateCollectionFormType>({
     resolver: zodResolver(createCollectionSchema),
     defaultValues: {
-      color: "",
+      color: "indigo",
     },
   });
+
+  const currentCollectionColor: string = watch("color");
 
   async function handleCreateCollection(data: CreateCollectionFormType) {
     await mutateAsync(data);
@@ -62,79 +63,79 @@ export function CreateCollectionForm({ onSuccess }: CreateCollectionFormProps) {
         id="create-collection-form"
         className="p-0"
       >
-        <div className="flex flex-col">
-          <div className="relative border-b border-border/50">
-            <AtSign
-              className="size-4.5 absolute top-1/2 -translate-y-1/2 left-3 text-foreground/60"
-              strokeWidth={1.5}
+        <div className="flex flex-col items-center justify-center gap-5 lg:p-10 pt-5">
+          {/* Collection color */}
+          <div>
+            <Controller
+              name="color"
+              control={control}
+              render={({ field }) => (
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <SelectTrigger className="data-[size=default]:h-14 w-14 border-border/70 dark:border-none mb-0 dark:bg-foreground/5 flex items-center justify-center cursor-pointer">
+                    <FolderIcon
+                      data-fill={currentCollectionColor}
+                      className="size-8"
+                    />
+                  </SelectTrigger>
+                  <SelectContent align="center">
+                    <SelectGroup className="flex">
+                      {collectionColors.map((color) => (
+                        <SelectItem
+                          value={color.value}
+                          key={color.value}
+                          className="focus:bg-foreground/7 p-2"
+                        >
+                          <FolderIcon
+                            data-fill={color.color}
+                            className="size-5"
+                          />
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              )}
             />
+            {errors.color && (
+              <span className="font-medium text-xs text-red-400">
+                {errors.color.message}
+              </span>
+            )}
+          </div>
+
+          <h1 className="font-semibold text-2xl">Nova coleção</h1>
+
+          {/* Collection name */}
+          <div className="w-full">
             <Input
               {...register("name")}
-              placeholder="Insira um nome para a coleção"
+              placeholder="Dê uma nome para sua coleção..."
+              className="p-3"
+              autoFocus
               autoComplete="off"
-              variant="blank"
-              className="w-full p-3 pl-9"
             />
-          </div>
-          <div className="flex flex-col gap-3 p-3">
             {errors.name && (
-              <Tooltip open={true}>
-                <TooltipTrigger className=""></TooltipTrigger>
-                <TooltipContent className="flex items-center gap-1">
-                  <CircleXIcon className="size-3.5 text-red-400" />
-                  Preencha o campo inserindo o nome da coleção
-                </TooltipContent>
-              </Tooltip>
+              <span className="font-medium text-xs text-red-400">
+                Preencha o campo inserindo o nome da coleção
+              </span>
             )}
-            <div>
-              <Controller
-                name="color"
-                control={control}
-                render={({ field }) => (
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full border-border/70 dark:border-none mb-0 dark:bg-foreground/5">
-                      <SelectValue placeholder="Escolha uma cor" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {collectionColors.map((color) => (
-                          <SelectItem
-                            value={color.value}
-                            key={color.value}
-                            className="focus:bg-foreground/7"
-                          >
-                            <div
-                              data-color={color.color}
-                              className="size-2.5 rounded-full"
-                            />
-                            {color.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-              {errors.color && (
-                <span className="font-medium text-xs text-red-400">
-                  {errors.color.message}
-                </span>
-              )}
-            </div>
+          </div>
 
+          {/* Collection description */}
+          <div className="w-full">
             <textarea
               {...register("description")}
               placeholder="Insira uma breve descrição..."
-              className="px-2 py-1.5 rounded-md text-sm w-full focus:outline-none focus:ring-2 dark:ring-ring
-              ring-(--purple) bg-foreground/5 col-span-2 h-24"
+              className="p-3 rounded-md text-sm w-full focus:outline-none focus:ring dark:ring-ring
+              ring-(--purple) bg-foreground/5 col-span-2 h-24 border border-border/40"
             />
           </div>
         </div>
       </form>
-      <footer className="flex justify-end p-3 pt-0">
+      <footer className="flex justify-end lg:px-10 lg:pb-5 pt-0">
         <Button
           variant="purple"
-          className="h-9 rounded-sm w-full text-[13px]"
+          className="h-10 rounded-sm w-full text-[13px]"
           form="create-collection-form"
           disabled={isPending}
         >
