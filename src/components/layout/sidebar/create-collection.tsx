@@ -5,10 +5,10 @@ import { FolderPlus } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export function CreateCollection() {
-  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
   return (
-    <Dialog open={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
+    <Dialog open={dialogIsOpen} onOpenChange={setDialogIsOpen}>
       <DialogTrigger asChild>
         <SidebarComponent.Button>
           <FolderPlus strokeWidth={2.2} className="size-4.5 text-ring" />
@@ -16,9 +16,9 @@ export function CreateCollection() {
         </SidebarComponent.Button>
       </DialogTrigger>
       <DialogContent
-        className="w-xl dialog"
+        className="w-xl dialog gap-0"
       >
-        <CreateCollectionForm onSuccess={() => setPopoverIsOpen(false)}/>
+        <CreateCollectionForm onSuccess={() => setDialogIsOpen(false)}/>
       </DialogContent>
     </Dialog>
   );

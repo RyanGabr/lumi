@@ -16,7 +16,7 @@ import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { FolderIcon } from "@heroicons/react/20/solid";
 
-// Using this prop to close the popover
+// Using this prop to close the diaog
 interface CreateCollectionFormProps {
   onSuccess?: () => void;
 }
