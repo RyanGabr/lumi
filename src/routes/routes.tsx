@@ -8,6 +8,7 @@ import { Favorite } from "@/pages/app/favorite";
 import { Feedback } from "@/pages/app/feedback";
 import { Trash } from "@/pages/app/trash";
 import { ImageDetails } from "@/pages/app/image-details";
+import { Collections } from "@/pages/app/collections";
 
 export const routes = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const routes = createBrowserRouter([
           {
             path: "trash",
             element: <Trash />,
+          },
+          {
+            path: "collections",
+            element: <Collections />,
           },
         ],
       },

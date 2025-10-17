@@ -3,10 +3,11 @@ import { useLocation } from "react-router-dom";
 import { useGetCollection } from "@/hooks/use-get-collection";
 import { CreateCollection } from "./create-collection";
 import { CreateImage } from "./create-image";
-import { Inbox, SendHorizonal, Star, Trash2 } from "lucide-react";
+import { Folders, Inbox, SendHorizonal, Star, Trash2 } from "lucide-react";
 
 const sidebarItems = [
   { label: "Página inicial", icon: Inbox, href: "/home" },
+  { label: "Coleções", icon: Folders, href: "/collections" },
   { label: "Favoritos", icon: Star, href: "/favorite" },
   { label: "Lixeira", icon: Trash2, href: "/trash" },
   { label: "Feedback", icon: SendHorizonal, href: "/feedback" },
