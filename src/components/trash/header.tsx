@@ -19,7 +19,7 @@ export function Header() {
 
       {/* Banner */}
       <div className="relative">
-        <div className="bg-foreground h-36 w-full opacity-10" />
+        <div className="bg-foreground h-10 lg:h-36 w-full opacity-0 lg:opacity-10" />
         <div className="w-full xl:w-10/12 2xl:w-8/12 mx-auto px-5 md:px-10">
           <div className="bg-ring size-14 rounded-xl border-2 border-background flex items-center justify-center absolute -bottom-10 p-2">
             <TrashIcon className="fill-white" />

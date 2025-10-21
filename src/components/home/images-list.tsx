@@ -25,7 +25,7 @@ export function ImagesList() {
   return (
     <div className="space-y-4 select-none">
       <Header />
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 items-start">
         {images.map((image) => (
           <Image image={image} key={image.id} />
         ))}

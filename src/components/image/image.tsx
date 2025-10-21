@@ -45,7 +45,7 @@ export function Image({ image }: ImageProps) {
             <img
               key={image.id}
               src={image.image_url}
-              className="w-full h-72 rounded-xl object-cover transition-all hover:brightness-85 border-2 border-border/50"
+              className="w-full h-72 rounded-xl object-cover transition-all hover:brightness-85 border-border/50"
             />
           </button>
         </ContextMenuTrigger>

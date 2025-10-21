@@ -41,7 +41,7 @@ export function EditCollection() {
     resolver: zodResolver(updateCollectionSchema),
   });
 
-  const currentCategoryColor = watch("color");
+  const currentCollectionColor = watch("color");
 
   useEffect(() => {
     if (collection) {
@@ -93,7 +93,7 @@ export function EditCollection() {
           {/* Banner */}
           <div className="relative">
             <div
-              data-color={currentCategoryColor}
+              data-color={currentCollectionColor}
               className="h-12 w-full opacity-10 rounded-t-xl"
             />
             <div className="absolute -bottom-5 pl-4">

@@ -8,7 +8,7 @@ type FileUploaderProps = {
   onChange?: (file: File | null) => void;
 };
 
-export default function FileUploader({ onChange, value }: FileUploaderProps) {
+export default function FileUploader({ onChange }: FileUploaderProps) {
   const maxSizeMB = 5;
   const maxSize = maxSizeMB * 1024 * 1024; // 5MB default
 

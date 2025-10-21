@@ -40,7 +40,7 @@ export function Header() {
 
       {/* Banner */}
       <div className="relative">
-        <div data-color={collection.color} className="h-36 w-full opacity-10" />
+        <div data-color={collection.color} className="h-10 lg:h-36 w-full opacity-0 lg:opacity-10" />
         <div className="w-full xl:w-10/12 2xl:w-8/12 mx-auto px-5 md:px-10">
           <div
             data-color={collection.color}

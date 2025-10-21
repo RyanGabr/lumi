@@ -19,7 +19,7 @@ export function Header() {
 
       {/* Banner */}
       <div className="relative">
-        <div className="bg-yellow-400 h-36 w-full opacity-10" />
+        <div className="bg-yellow-400 h-10 lg:h-36 w-full opacity-0 lg:opacity-10" />
         <div className="w-full xl:w-10/12 2xl:w-8/12 mx-auto px-5 md:px-10">
           <div
             className="bg-background size-14 rounded-xl border-2 border-border flex items-center justify-center absolute -bottom-10 p-2"
